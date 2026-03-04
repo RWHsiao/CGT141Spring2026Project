@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+}
+
+header {
+    display: flex;
+    background-color: blue;
+}
+
+#header-left {
+    align-items: left;
+    justify-content: left;
+}
+
+#header-right {
+    background-color: white;
+}
+
+#button-container {
+    align-items: left;
+    justify-content: left;
+}
+
+#user-container {
+    text-align: right;
+    font-weight: bold;
+    background-color: red;
+}
+
+button {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    /*border: none;*/
+    background-color: transparent;
+    cursor: pointer;
+}
