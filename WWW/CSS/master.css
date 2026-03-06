@@ -3,37 +3,34 @@ body {
     background-color: black;
 }
 
-header {
-    height: 10%;
-    display: flex;
-    background-color: blue;
+
+.navbar-header {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 1px solid white;
 }
 
-#header-left {
-    align-items: left;
-    justify-content: left;
-}
-
-#header-right {
-    background-color: white;
-}
-
-#button-container {
-    align-items: left;
-    justify-content: left;
-}
-
-#user-container {
-    text-align: right;
+.navbar-brand {
+    display: block;
     font-weight: bold;
-    background-color: red;
+    border: 1px solid red;
 }
 
-button {
-    height: 100%;
-    font-family: Arial, sans-serif;
-    font-weight: bold;
-    /*border: none;*/
-    background-color: transparent;
-    cursor: pointer;
+#page-container {
+    margin: 0;
+    padding: 0;
 }
+
+#navigation-container {
+    padding-left: 1vw;
+    padding-right: 3vw;
+    margin: 0;
+    width: 100%;
+}
+
+#navbar-left-group {
+    margin-left: 1vw;
+    border: 1px solid blue;
+}
+
