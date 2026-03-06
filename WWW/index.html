@@ -8,22 +8,42 @@
     </head>
 
     <body>
-        <div id="page-container">
-            <header>
-                <span id="header-left" class="col-xs-8" class="col-sm-8">
+        <div id="page-container" class="container-fluid">
+            <nav class="navbar navbar-default navbar-top-fixed">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">Logo</a>
+                    </div>
+                    <ul class="nav navbar">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Games</a></li>
+                        <li><a href="#">Leaderboards</a></li>
+                    </ul>
+                    <ul class="nav navbar navbar-right">
+                        <li>Username</li>
+                        <li>Profile Picture</li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!--<header class="d-flex justify-content-between align-items-center">
+                <span id="header-left" class="d-flex flex-nowrap gap-2 flex-grow-1 align-items-center">
                     <span>Logo</span>
-                    <span id="button-container">
-                        <button>Home</button>
-                        <button>Games</button>
-                        <button>Leaderboards</button>
+                    <span id="button-container" class="d-flex flex-nowrap gap-2 flex-grow-1 overflow-auto">
+                        <button class="btn flex-fill">Home</button>
+                        <button class="btn flex-fill">Games</button>
+                        <button class="btn flex-fill">Leaderboards</button>
                     </span>
                 </span>
-                <span id="header-right" class="col-xs-4" class="col-sm-4">
+                <span id="header-right" class="d-flex flex-nowrap gap-2 align-items-center">
                     <span id="user-container">
-                        Profile
+                        <span id="username" class="flex-fill">Username</span>
+                        <span id="profile-pic" class="flex-fill">Profile Pic</span>
                     </span>
                 </span>
-            </header>
+            </header> -->
+
+
         </div>
         
     </body>

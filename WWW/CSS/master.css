@@ -4,6 +4,7 @@ body {
 }
 
 header {
+    height: 10%;
     display: flex;
     background-color: blue;
 }
@@ -29,6 +30,7 @@ header {
 }
 
 button {
+    height: 100%;
     font-family: Arial, sans-serif;
     font-weight: bold;
     /*border: none;*/
