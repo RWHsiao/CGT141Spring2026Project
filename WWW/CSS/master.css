@@ -3,18 +3,10 @@ body {
     background-color: black;
 }
 
-
-.navbar-header {
-    display: block;
-    margin: 0;
-    padding: 0;
-    border: 1px solid white;
-}
-
 .navbar-brand {
-    display: block;
     font-weight: bold;
-    border: 1px solid red;
+    display: flex;
+    align-items: center;
 }
 
 #page-container {
@@ -23,14 +15,35 @@ body {
 }
 
 #navigation-container {
-    padding-left: 1vw;
-    padding-right: 3vw;
     margin: 0;
     width: 100%;
 }
 
-#navbar-left-group {
-    margin-left: 1vw;
-    border: 1px solid blue;
+#user-container {
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 1vmax;
+    gap: 8px;
+    @media (min-width: 768px) {
+        gap: 0;
+    }
+    padding: 0 8px 0 8px;
+    background: none;
+    border: none;
 }
 
+#navbar-left-group {
+    height: auto;
+}
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.profile-img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}

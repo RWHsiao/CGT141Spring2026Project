@@ -12,7 +12,7 @@
             <nav class="navbar navbar-expand-lg navbar-inverse navbar-top-fixed">
                 <div id="navigation-container" class="container-fluid">
                     <div class="navbar-header">
-                        <a class="navbar-brand" href="#">Logo</a>
+                        <a class="navbar-brand" href="#"><img src="Images/Logo.png" alt="Logo" class="logo-img"/></a>
                     </div>
                     <ul id="navbar-left-group" class="nav navbar-nav">
                         <li class="active"><a href="#">Home</a></li>
@@ -22,13 +22,17 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <span class="navbar-text">Username</span>
-                            <span class="navbar-btn"><img src="profile.jpg" alt="PFP" class="profile-img"></span>
+                            <a id="user-container" href="#">
+                                <span class="navbar-text">Username</span>
+                                <span class="navbar-btn"><img src="Images/PFP.png" alt="PFP" class="profile-img"></span>
+                            </a>
                         </li>
                     </ul>
                     
                 </div>
             </nav>
+
+            <!--Switch to dropdown when compressed-->
 
             <!--<header class="d-flex justify-content-between align-items-center">
                 <span id="header-left" class="d-flex flex-nowrap gap-2 flex-grow-1 align-items-center">
