@@ -1,6 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to bottom, #040033 0%, #2843ae 100%);
+    align-items: center;
+    justify-content: center;
 }
 
 #page-container {
@@ -59,10 +61,10 @@ body {
     border-radius: 50%;
 }
 
-/* Content styles */
+/* Home Content styles */
 
 #content {
-    margin: 0 auto;
+    margin: auto;
     padding: 0;
     width: 75%;
     height: auto;
@@ -71,10 +73,11 @@ body {
     border: 2px solid blue;
 }
 
-#content-logo-container {
+.logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 2px solid orange;
 }
 
 #content-logo {
@@ -89,4 +92,43 @@ body {
     color: white;
     font-size: 20px;
     text-align: center;
+}
+
+/* Login/Signup styles */
+
+.form-body {
+    display: flex;
+}
+
+.form-container {
+    position: relative;
+    padding: 20px;
+    margin: auto;
+    padding: 10px;
+    width: 450px;
+    height: 500px;
+    border-radius: 30px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#form-logo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+#close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1001;
+    font-size: 30px;
+}
+
+.form-container h2 {
+    margin-top: 0;
+    font-weight: bold;
 }
