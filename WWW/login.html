@@ -10,7 +10,7 @@
     </head>
 
     <body class="form-body">
-        <div class="form-container">
+        <div class="form-container" id="login-container">
             <div id="close-button">
                 <a href="index2.html">
                     <span class="glyphicon glyphicon-remove"></span>
@@ -19,8 +19,18 @@
             <div class="logo-container">
                 <img src="Images/Logo.png" alt="Logo" id="form-logo"/>
             </div>
-            <h2 style="border: 2px solid red">Login</h2>
-            
+            <h2>Login</h2>
+            <a href="sign_up.html">Sign up instead</a>
+            <form id="form-fields">
+                <label for="username">Username</label><br/>
+                <input type="text" class="text-input" id="username" name="username"><br/>
+                <br/>
+                <label for="password">Password</label><br/>
+                <input type="password" class="text-input" id="password" name="password"><br/>
+                <br/>
+                <br/>
+                <input type="submit" id="submit-button" value="Login" disabled>
+            </form>
         </div>
     </body>
 </html>
