@@ -1,0 +1,66 @@
+<!DOCTYPE XHTML PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <Title>Home</Title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link href="css/master.css" rel="stylesheet" type="text/css"/>
+    </head>
+
+    <body class="form-body">
+        <div class="form-container" id="sign-up-container">
+            <div id="close-button">
+                <a href="index2.html">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            </div>
+            <div class="logo-container">
+                <img src="Images/Logo.png" alt="Logo" id="form-logo"/>
+            </div>
+            <h2>Sign Up</h2>
+            <a href="login.html">Login instead</a>
+            <form id="form-fields">
+                <label for="username">Username</label><br/>
+                <input type="text" class="text-input" id="username" name="username"><br/>
+                <br/>
+                <label for="password">Password</label><br/>
+                <input type="password" class="text-input" id="password" name="password"><br/>
+                <br/>
+                <label for="password2">Re-enter Password</label><br/>
+                <input type="password" class="text-input" id="password2" name="password2"><br/>
+                <br/>
+                <label for="username">Select Profile Picture</label><br/>
+                <div class="pfp-selection">
+                    <label class="pfp-label">
+                        <input type="radio" name="pfp" value="pfp1" required checked>
+                        <img src="Images/PFP.png" class="pfp-option">
+                    </label>
+                    <label class="pfp-label">
+                        <input type="radio" name="pfp" value="pfp2">
+                        <img src="Images/PFP.png" class="pfp-option">
+                    </label>
+                    <label class="pfp-label">
+                        <input type="radio" name="pfp" value="pfp3">
+                        <img src="Images/PFP.png" class="pfp-option">
+                    </label>
+                    <label class="pfp-label">
+                        <input type="radio" name="pfp" value="pfp4">
+                        <img src="Images/PFP.png" class="pfp-option">
+                    </label>
+                </div>
+                <br/>
+                <label>
+                    <input type="checkbox" required>
+                    I am not a robot
+                </label>
+                <br/>
+                <br/>
+                <input type="submit" id="submit-button" value="Sign up" disabled>
+                
+            </form>
+        </div>
+    </body>
+</html>
