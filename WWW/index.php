@@ -1,3 +1,4 @@
+
 <!DOCTYPE XHTML PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -7,12 +8,17 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link href="css/master.css" rel="stylesheet" type="text/css"/>
+        <link href="/WWW/CSS/master.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
         <div id="page-container" class="container-fluid">
-
+            
+            <?php
+            $currentPage = 'home';
+            include "navbar.php";
+            ?>
+<!--
             <nav class="navbar navbar-inverse">
                 <div id="navigation-container" class="container-fluid">
                     <div class="navbar-header">
@@ -22,7 +28,7 @@
                             <span class="icon-bar"></span>
                         </button>
 
-                        <a class="navbar-brand" href="index2.html">
+                        <a class="navbar-brand" href="index.php">
                             <img src="Images/Logo.png" alt="Logo" id="logo-img"/>
                         </a>
 
@@ -31,30 +37,40 @@
                     <div class="collapse navbar-collapse" id="main-navbar">
 
                         <ul id="navbar-left-group" class="nav navbar-nav">
-                            <li class="active"><a href="index2.html">Home</a></li>
+                            <li class="active"><a href="index.php">Home</a></li>
                             <li><a href="games.html">Games</a></li>
                             <li><a href="leaderboards.html">Leaderboards</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a id="user-container" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <span class="navbar-text">Username</span>
-                                    <span class="navbar-btn">
-                                        <img src="Images/PFP.png" alt="PFP" id="profile-img">
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Logout</a></li>
-                                </ul>
-                            </li>
+                            <?php if ($loggedIn): ?>
+                                <li>
+                                    <a id="user-container" class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <span class="navbar-text"><?php echo htmlspecialchars($username); ?></span>
+                                        <span class="navbar-btn">
+                                            <img src="Images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img">
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="logout.php">Logout</a></li>
+                                    </ul>
+                                </li>
+                            <?php else: ?>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login/Sign Up<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="login.php">Login</a></li>
+                                        <li><a href="sign_up.php">Sign Up</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
                         </ul>
 
                     </div>
 
                 </div>
             </nav>
-
+                            -->
             <div id="content">
                 <div class="logo-container">
                     <img src="Images/Logo.png" alt="Logo" id="content-logo"/>
