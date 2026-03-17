@@ -215,7 +215,7 @@ body {
     border-color: #1d00d9;
 }
 
-/* Games Page styles */
+/* Games/Leaderboards Page styles */
 
 #games-content {
     margin: 0;
@@ -249,6 +249,18 @@ body {
     max-width: 300px;
 }
 
+.sort-option {
+    background-color: none;
+}
+
+.sort-option:hover {
+    cursor: pointer;
+}
+
+.sort-option.selected, .sort-option.selected:hover {
+    background-color: rgb(198, 198, 198);
+}
+
 .game-list {
     max-height: 70vh;
     height: 600px;
@@ -270,12 +282,8 @@ body {
     text-align: left;
 }
 
-.game-item:nth-child(odd){
+.game-item {
     background:#3f3f3f;
-}
-
-.game-item:nth-child(even){
-    background:#838383;
 }
 
 .game-item:hover {
@@ -305,7 +313,17 @@ body {
     justify-self: start;
     display: flex;
     align-items: center;
-    gap: 8px;
+    border: 2px solid green;
+}
+
+#play-header #user-container .navbar-text {
+    max-width: 15vw;
+    max-height: 30vw;
+    white-space: normal;      
+    word-wrap: break-word;   
+    overflow-wrap: break-word;
+    overflow: hidden;
+    border: 2px solid yellow;
 }
 
 #play-header h1 {
@@ -314,9 +332,15 @@ body {
     @media (max-width: 768px) {
         font-size: 50px;
     }
+    @media (max-width: 400px) {
+        font-size: 30px;
+    }
+    max-width: 50vw;
     text-align: center;
     font-weight: bold;
     justify-self: center;
+    border: 2px solid orange;
+    overflow: hidden;
 }
 
 #play-header #close-button {
