@@ -7,12 +7,16 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link href="css/master.css" rel="stylesheet" type="text/css"/>
+        <link href="/WWW/CSS/master.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
         <div id="page-container" class="container-fluid">
-
+            <?php
+            $currentPage = 'leaderboards';
+            include "navbar.php";
+            ?>
+<!--
             <nav class="navbar navbar-inverse">
                 <div id="navigation-container" class="container-fluid">
                     <div class="navbar-header">
@@ -22,7 +26,7 @@
                             <span class="icon-bar"></span>
                         </button>
 
-                        <a class="navbar-brand" href="index2.html">
+                        <a class="navbar-brand" href="index.php">
                             <img src="Images/Logo.png" alt="Logo" id="logo-img"/>
                         </a>
 
@@ -31,9 +35,9 @@
                     <div class="collapse navbar-collapse" id="main-navbar">
 
                         <ul id="navbar-left-group" class="nav navbar-nav">
-                            <li><a href="index2.html">Home</a></li>
-                            <li class="active"><a href="games.html">Games</a></li>
-                            <li><a href="leaderboards.html">Leaderboards</a></li>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="games.html">Games</a></li>
+                            <li class="active"><a href="leaderboards.html">Leaderboards</a></li>
                         </ul>
 
                         <ul class="nav navbar-nav navbar-right">
@@ -54,9 +58,10 @@
 
                 </div>
             </nav>
+-->
             <div id="games-content">
                 <h1>
-                    Games
+                    Leaderboards
                 </h1>
                 <div id="search-container" style="border: 2px solid red; margin-top: 0px;">
                     <div id="search-header">
