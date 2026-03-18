@@ -9,6 +9,7 @@ CREATE TABLE IF NOT EXISTS scores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
     game_name VARCHAR(50) NOT NULL,
+    variant VARCHAR(50) NOT NULL,
     score INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
