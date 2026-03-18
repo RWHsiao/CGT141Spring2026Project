@@ -1,7 +1,7 @@
 <!DOCTYPE XHTML PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <Title>Home</Title>
+        <Title>Games</Title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -16,49 +16,7 @@
             $currentPage = 'games';
             include "navbar.php";
             ?>
-<!--
-            <nav class="navbar navbar-inverse">
-                <div id="navigation-container" class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
 
-                        <a class="navbar-brand" href="index.php">
-                            <img src="Images/Logo.png" alt="Logo" id="logo-img"/>
-                        </a>
-
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="main-navbar">
-
-                        <ul id="navbar-left-group" class="nav navbar-nav">
-                            <li><a href="index.php">Home</a></li>
-                            <li class="active"><a href="games.html">Games</a></li>
-                            <li><a href="leaderboards.html">Leaderboards</a></li>
-                        </ul>
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a id="user-container" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                    <span class="navbar-text">Username</span>
-                                    <span class="navbar-btn">
-                                        <img src="Images/PFP.png" alt="PFP" id="profile-img">
-                                    </span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-
-                    </div>
-
-                </div>
-            </nav>
--->
             <div id="games-content">
                 <h1>
                     Games
@@ -74,135 +32,57 @@
                             </button>
 
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="#" class="sort-option" data-sort="az">Name (A-Z)</a></li>
-                                <li><a href="#" class="sort-option" data-sort="za">Name (Z-A)</a></li>
-                                <li><a href="#" class="sort-option" data-sort="new">Plays (Highest)</a></li>
-                                <li><a href="#" class="sort-option" data-sort="old">Plays (Lowest)</a></li>
+                                <li><a class="sort-option" data-sort="high">Plays (Highest)</a></li>
+                                <li><a class="sort-option" data-sort="low">Plays (Lowest)</a></li>
+                                <li><a class="sort-option" data-sort="az">Name (A-Z)</a></li>
+                                <li><a class="sort-option" data-sort="za">Name (Z-A)</a></li>
                             </ul>
                         </div>
                     </div>
                     
                     <div class="game-list">
 
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        <button class="game-item btn">
-                            <span class="game-name">Game Name</span>
-                            <span class="game-info">
-                                <span class="game-plays">Plays: 0</span>
-                                <span class="game-high-score">Highest Score: --</span>
-                            </span>
-                        </button>
-                        
+                        <?php
+                        include "game_variants.php";
+
+                        foreach($games as $gameName => $variants) {
+                            foreach($variants as $variant => $settings) {
+
+                                $stmt = $conn->prepare("
+                                    SELECT COUNT(*) as plays, MAX(score) as high_score 
+                                    FROM scores 
+                                    WHERE game_name = ? AND variant = ?
+                                ");
+                                $stmt->bind_param("ss", $gameName, $variant);
+                                $stmt->execute();
+                                $stmt->bind_result($plays, $highScore);
+                                $stmt->fetch();
+                                $stmt->close();
+
+                                if ($plays === 0) $highScore = '--';
+
+                                echo "
+                                <button class='game-item btn'
+                                        data-name='" . htmlspecialchars($gameName . ' - ' . $variant) . "'
+                                        data-plays='0'
+                                        onclick=\"location.href='play.php?game=" . urlencode($gameName) . "&variant=" . urlencode($variant) . "'\">
+                                    <span class='game-name'>{$gameName} - {$variant}</span>
+                                    <span class='game-info'>
+                                        <span class='game-plays'>Plays: $plays</span>
+                                        <span class='game-high-score'>High Score: $highScore</span>
+                                    </span>
+                                </button>
+                                ";
+                            }
+                        }
+                        ?>
 
                     </div>
                 </div>
             </div>
-            
-
+        
         </div>
+
+        <script src="/WWW/JS/search.js"></script>
     </body>
 </html>

@@ -18,59 +18,6 @@
             $currentPage = 'home';
             include "navbar.php";
             ?>
-<!--
-            <nav class="navbar navbar-inverse">
-                <div id="navigation-container" class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-
-                        <a class="navbar-brand" href="index.php">
-                            <img src="Images/Logo.png" alt="Logo" id="logo-img"/>
-                        </a>
-
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="main-navbar">
-
-                        <ul id="navbar-left-group" class="nav navbar-nav">
-                            <li class="active"><a href="index.php">Home</a></li>
-                            <li><a href="games.html">Games</a></li>
-                            <li><a href="leaderboards.html">Leaderboards</a></li>
-                        </ul>
-
-                        <ul class="nav navbar-nav navbar-right">
-                            <?php if ($loggedIn): ?>
-                                <li>
-                                    <a id="user-container" class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                        <span class="navbar-text"><?php echo htmlspecialchars($username); ?></span>
-                                        <span class="navbar-btn">
-                                            <img src="Images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img">
-                                        </span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="logout.php">Logout</a></li>
-                                    </ul>
-                                </li>
-                            <?php else: ?>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login/Sign Up<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="login.php">Login</a></li>
-                                        <li><a href="sign_up.php">Sign Up</a></li>
-                                    </ul>
-                                </li>
-                            <?php endif; ?>
-                        </ul>
-
-                    </div>
-
-                </div>
-            </nav>
-                            -->
             <div id="content">
                 <div class="logo-container">
                     <img src="Images/Logo.png" alt="Logo" id="content-logo"/>

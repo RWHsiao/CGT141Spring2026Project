@@ -10,6 +10,12 @@ $(document).ready(function() {
             updateSubmitButton();
             return;
         }
+        if (username.length > 25) {
+            $("#username-status").text("Username cannot be more than 25 characters long").css("color", "red");
+            validUsername = false;
+            updateSubmitButton();
+            return;
+        }
 
         $.get("/WWW/check_username.php", { username: username }, function(data) {
             let result = JSON.parse(data);
