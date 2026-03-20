@@ -73,9 +73,15 @@ unset($settings['script']);
             </header>
 
             <div id="game-container" style="border: 2px solid red;">
-                <canvas id="gameCanvas"></canvas>
+
             </div>
 
         </div>
+
+        <script>
+            const GAME_SETTINGS = <?php echo json_encode($settings); ?>;
+        </script>
+
+        <script src="\WWW\JS\Games\<?php echo $script; ?>"></script>
     </body>
 </html>
