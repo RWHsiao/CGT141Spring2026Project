@@ -13,12 +13,12 @@
     <body>
         <div id="page-container" class="container-fluid">
             <?php
-            $currentPage = 'leaderboards';
+            $currentPage = 'stats';
             include "navbar.php";
             ?>
             <div id="games-content">
                 <h1>
-                    Leaderboards
+                    My Stats
                 </h1>
                 <div id="search-container" style="border: 2px solid red; margin-top: 0px;">
                     <div id="search-header">
@@ -52,9 +52,9 @@
                                 $stmt = $conn->prepare("
                                     SELECT COUNT(*) as plays, MAX(score) as high_score 
                                     FROM scores 
-                                    WHERE game_name = ? AND variant = ?
+                                    WHERE game_name = ? AND variant = ? AND user_id = ?
                                 ");
-                                $stmt->bind_param("ss", $gameName, $variant);
+                                $stmt->bind_param("ssi", $gameName, $variant, $user_id);
                                 $stmt->execute();
                                 $stmt->bind_result($plays, $highScore);
                                 $stmt->fetch();
@@ -66,11 +66,11 @@
                                 <button class='game-item btn'
                                         data-name='" . htmlspecialchars($gameName . ' - ' . $variant) . "'
                                         data-plays='0'
-                                        onclick='openModal(\"$gameName\", \"$variant\")'>
+                                        onclick='openModal(\"$gameName\", \"$variant\", $user_id)'>
                                     <span class='game-name'>{$gameName} - {$variant}</span>
                                     <span class='game-info'>
-                                        <span class='game-plays'>Plays: $plays</span>
-                                        <span class='game-high-score'>High Score: $highScore</span>
+                                        <span class='game-plays'>My Plays: $plays</span>
+                                        <span class='game-high-score'>My High Score: $highScore</span>
                                     </span>
                                 </button>
                                 ";
@@ -88,107 +88,47 @@
                                 Game Name
                             </h3>
                             <h3>
-                                Leaderboard
+                                My High Scores
                             </h3>
                             <ul class="modal-list">
                                 <li id="first" class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">1</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
+                                    <span>1</span>
                                     <span>1000</span>
                                 </li>
                                 <li id="second" class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">2</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
+                                    <span>2</span>
                                     <span>1000</span>
                                 </li>
                                 <li id="third" class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">3</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
+                                    <span>3</span>
+                                    <span>1000</span>
+                                </li>
+                                <li class="modal-item"> 
+                                    <span>4</span>
                                     <span>1000</span>
                                 </li>
                                 <li class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">4</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
+                                    <span>5</span>
                                     <span>1000</span>
                                 </li>
                                 <li class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">5</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
+                                    <span>6</span>
                                     <span>1000</span>
                                 </li>
                                 <li class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">6</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
+                                    <span>7</span>
                                     <span>1000</span>
                                 </li>
                                 <li class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">7</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
+                                    <span>8</span>
                                     <span>1000</span>
                                 </li>
                                 <li class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">8</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
+                                    <span>9</span>
                                     <span>1000</span>
                                 </li>
                                 <li class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">9</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
-                                    <span>1000</span>
-                                </li>
-                                <li class="modal-item">
-                                    <span class="leader-info">
-                                        <span class="rank">10</span>
-                                        <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
-                                            <span class="leader-username">Username</span>
-                                        </span>
-                                    </span>
+                                    <span>10</span>
                                     <span>1000</span>
                                 </li>
                             </ul>
@@ -199,11 +139,7 @@
             </div>
             
         </div>
-        <script>
-            window.currentUsername = <?php echo json_encode($username); ?>;
-        </script>
-
         <script src="/WWW/JS/search.js"></script>
-        <script src="/WWW/JS/open_leaderboard_modal.js"></script>
+        <script src="/WWW/JS/open_stat_modal.js"></script>
     </body>
 </html>

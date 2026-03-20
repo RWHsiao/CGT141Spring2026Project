@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <h2>Login</h2>
             <a href="sign_up.php">Sign up instead</a>
-            <form id="form-fields" method="POST" action="login.php">
+            <form class="form-fields" method="POST" action="login.php">
                 <label for="username">Username</label><br/>
                 <input type="text" class="text-input" id="username" name="username" required value="<?php echo $usernameValue; ?>"><br/>
                 <br/>
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="password" class="text-input" id="password" name="password" required><br/>
                 <br/>
                 <p style="color:red;"><?php echo $message; ?></p>
-                <input type="submit" id="submit-button" value="Login" disabled>
+                <input type="submit" id="submit-button" class="submit-button" value="Login" disabled>
             </form>
         </div>
 

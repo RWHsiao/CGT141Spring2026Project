@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <h2>Sign Up</h2>
             <a href="login.php">Login instead</a>
-            <form id="form-fields" method="POST">
+            <form class="form-fields" method="POST">
                 <label for="username">Username</label><br/>
                 <input type="text" class="text-input" id="username" name="username" required><br/>
                 <span id="username-status"></span><br/>
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </label>
                 <br/>
                 <br/>
-                <input type="submit" id="submit-button" value="Sign up" disabled>
+                <input type="submit" id="submit-button" class="submit-button" value="Sign up" disabled>
                 
             </form>
 
@@ -97,6 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">Sign Up Successful!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Your account has been created successfully. You may now log in.</p>
                     </div>
                     <div class="modal-footer">
                         <a href="login.php" class="btn btn-success">Go to Login</a>

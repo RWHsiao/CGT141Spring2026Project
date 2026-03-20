@@ -3,6 +3,7 @@ session_start();
 include "database.php";
 
 $loggedIn = false;
+$user_id = -1;
 $username = "";
 $pfpNum = 1;
 
@@ -43,6 +44,9 @@ if (isset($_SESSION['user_id'])) {
                 <li class="<?php echo ($currentPage === 'home') ? 'active' : ''; ?>"><a href="index.php">Home</a></li>
                 <li class="<?php echo ($currentPage === 'games') ? 'active' : ''; ?>"><a href="games.php">Games</a></li>
                 <li class="<?php echo ($currentPage === 'leaderboards') ? 'active' : ''; ?>"><a href="leaderboards.php">Leaderboards</a></li>
+                <?php if ($loggedIn): ?>
+                    <li class="<?php echo ($currentPage === 'stats') ? 'active' : ''; ?>"><a href="stats.php">My Stats</a></li>
+                <?php endif; ?>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
@@ -56,6 +60,7 @@ if (isset($_SESSION['user_id'])) {
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="logout.php">Logout</a></li>
+                            <li><a href="account_settings.php">Account Settings</a></li>
                         </ul>
                     </li>
                 <?php else: ?>
