@@ -4,16 +4,25 @@ $games = [
         'Easy' => [
             'script' => 'flappy_bird.js',
             'speed' => 1,
+            'maxGap' => 8,
             'movingObstacles' => false
         ],
         'Medium' => [
             'script' => 'flappy_bird.js',
-            'speed' => 2,
+            'speed' => 1.5,
+            'maxGap' => 7,
             'movingObstacles' => false
         ],
         'Hard' => [
             'script' => 'flappy_bird.js',
-            'speed' => 3,
+            'speed' => 2,
+            'maxGap' => 6,
+            'movingObstacles' => false
+        ],
+        'Extreme' => [
+            'script' => 'flappy_bird.js',
+            'speed' => 2,
+            'maxGap' => 6,
             'movingObstacles' => true
         ]
     ],
