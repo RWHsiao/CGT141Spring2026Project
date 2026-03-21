@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
             </form>
 
-            <div id="successModal" class="modal fade" role="dialog">
+            <div id="success-modal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php if ($success): ?>
             <script>
                 $(document).ready(function(){
-                    $("#successModal").modal('show');
+                    $("#success-modal").modal('show');
                 });
             </script>
             <?php endif; ?>

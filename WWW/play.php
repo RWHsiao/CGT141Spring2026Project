@@ -25,6 +25,8 @@ include 'game_variants.php';
 
 $gameName = $_GET['game'];
 $variant = $_GET['variant'];
+$_SESSION['current_game'] = $gameName;
+$_SESSION['current_variant'] = $variant;
 
 $settings = $games[$gameName][$variant] ?? null;
 if (!$settings) {
@@ -66,14 +68,39 @@ unset($settings['script']);
                     <?php echo "{$gameName} - {$variant}"; ?>
                 </h1>
                 <div id="close-button">
-                    <a href="games.php">
+                    <a>
                         <span class="glyphicon glyphicon-remove"></span>
                     </a>
                 </div>
             </header>
 
             <div id="game-container" style="border: 2px solid red;">
+                <canvas id="game-canvas"></canvas>
+                <div id="game-over-popup" class="hidden">
+                    <div id="popup-content">
+                        <h1 id="game-over">Game Over</h1>
+                        <p id="final-score">Score: 0</p>
+                        <button id="restart-btn">Play Again</button>
+                        <button id="exit-btn">Exit</button>
+                    </div>
+                </div>
+            </div>
 
+            <div class="modal fade" id="exit-modal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Confirm Exit</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to exit? Your progress will be lost, and your score will not be saved.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="cancel-exit" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button id="confirm-exit" class="btn btn-danger">Exit</button>
+                    </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -83,5 +110,7 @@ unset($settings['script']);
         </script>
 
         <script src="\WWW\JS\Games\<?php echo $script; ?>"></script>
+        <script src="/WWW/JS/play_manager.js"></script>
+        <script src="/WWW/JS/game_over_logic.js"></script>
     </body>
 </html>

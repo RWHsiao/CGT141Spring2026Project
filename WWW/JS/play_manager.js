@@ -1,0 +1,101 @@
+const gameContainer = document.getElementById('game-container');
+const gameCanvas = document.getElementById('game-canvas');
+function resizeCanvas() {
+
+    const maxWidth = gameContainer.clientWidth;
+    const maxHeight = gameContainer.clientHeight;
+
+    const aspect = 16 / 9;
+
+    let width = maxWidth;
+    let height = width / aspect;
+
+    // If too tall, constrain by height instead
+    if (height > maxHeight) {
+        height = maxHeight;
+        width = height * aspect;
+    }
+
+    // Apply display size (CSS size)
+    gameCanvas.style.width = width + "px";
+    gameCanvas.style.height = height + "px";
+
+    // Match internal resolution
+    gameCanvas.width = width;
+    gameCanvas.height = height;
+}
+
+
+
+const gameOverPopup = document.getElementById('game-over-popup');
+const gameOverPopupContent = document.getElementById('popup-content');
+const gameOverText = document.getElementById('game-over');
+const scoreText = document.getElementById('final-score');
+const restartBtn = document.getElementById('restart-btn');
+const exitBtn = document.getElementById('exit-btn');
+
+function scalePopup() {
+    const rect = gameCanvas.getBoundingClientRect();
+
+    gameOverPopup.style.position = "absolute";
+    const popupWidth = rect.width * 0.5;
+    const popupHeight = rect.height * 0.4;
+    gameOverPopup.style.width = popupWidth + "px";
+    gameOverPopup.style.height = popupHeight + "px";
+
+    gameOverPopupContent.style.padding = popupWidth * 0.03 + "px";
+
+    const fontSize = rect.width * 0.03; 
+    gameOverText.style.fontSize = fontSize + "px";
+    gameOverText.style.margin = "0 0 " + (popupHeight * 0.05) + "px 0";
+    scoreText.style.fontSize = fontSize * 0.8 + "px";
+    scoreText.style.margin = "0 0 " + (popupHeight * 0.05) + "px 0";
+
+    const btnFontSize = rect.width * 0.02;
+    [restartBtn, exitBtn].forEach(btn => {
+        btn.style.fontSize = btnFontSize + "px";
+        btn.style.padding = rect.height * 0.01 + "px " + rect.width * 0.015 + "px";
+    });
+}
+
+$(document).ready(function() {
+    $("#confirm-exit").click(function(e) {
+        e.preventDefault();
+        $("#exit-modal").modal('hide');
+        window.location.href = "games.php";
+    });
+
+    $("#cancel-exit").click(function(e) {
+        e.preventDefault();
+        $("#exit-modal").modal('hide');
+    });
+
+    $('#exit-modal').on('hidden.bs.modal', function () {
+        resume();
+    });
+});
+
+function resume() {
+    setTimeout(function() {
+        pause = false;
+    }, 1000);
+}
+
+document.getElementById('close-button').addEventListener('pointerdown', (e) => {
+    e.stopPropagation();
+    if (gameStart && !gameOver) {
+        pause = true;
+        $("#exit-modal").modal('show');
+    }
+    else {
+        window.location.href = "games.php";
+    }
+});
+
+window.addEventListener('resize', () => {
+    resizeCanvas();
+    scalePopup();
+});
+
+resizeCanvas();
+scalePopup();

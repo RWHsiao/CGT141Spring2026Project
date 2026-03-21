@@ -1,10 +1,9 @@
 const container = document.getElementById('game-container');
-const canvas = document.createElement('canvas');
+const canvas = document.getElementById('game-canvas');
 canvas.width = container.offsetWidth;
 canvas.height = container.offsetHeight;
 const ctx = canvas.getContext('2d');
 container.appendChild(canvas);
-canvas.id = "game-canvas";
 
 const speed = GAME_SETTINGS.speed;
 const movingObstacles = GAME_SETTINGS.movingObstacles;
@@ -38,6 +37,7 @@ let frame = 0;
 let score = 0;
 let gameStart = false;
 let gameOver = false;
+let pause = false;
 let prevTop = relHeight / 2;
 
 function createPipe() {
@@ -72,13 +72,8 @@ function createPipe() {
     });
 }
 
-function resizeCanvas() {
-    canvas.width = canvas.clientWidth;
-    canvas.height = canvas.clientHeight;
-}
-
 function update() {
-    if (!gameStart || gameOver) {
+    if (!gameStart || gameOver || pause) {
         return;
     }
     frame++;
@@ -96,8 +91,7 @@ function update() {
     // Bottom boundary
     if (bird.y + bird.size > relHeight) {
         bird.y = relHeight - bird.size;
-        console.log("Game Over");
-        gameOver = true;
+        triggerGameOver();
     }
 
     // Create pipes
@@ -122,8 +116,7 @@ function update() {
     pipes.forEach(pipe => {
         if (bird.x < pipe.x + pipe.width && bird.x + bird.size > pipe.x &&
             (bird.y < pipe.top || bird.y + bird.size > pipe.bottom)) {
-            console.log("Game Over");
-            gameOver = true;
+            triggerGameOver();
         }
         if (bird.x > pipe.x + pipe.width && !pipe.passed) {
             score++;
@@ -161,6 +154,23 @@ function draw() {
 
 }
 
+
+function resetGame() {
+    bird.y = relHeight / 2;
+    bird.velocity = 0;
+
+    pipes = [];
+    frame = 0;
+    score = 0;
+    prevTop = relHeight / 2;
+
+    gameStart = false;
+    gameOver = false;
+
+    hideGameOver();
+}
+
+
 document.addEventListener('keydown', (e) => {
     if (e.code === "Space" || e.code === "ArrowUp") {
         e.preventDefault();
@@ -169,19 +179,18 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// document.addEventListener('click', () => {
-//     bird.velocity = bird.lift;
-//     gameStart = true;
-// });
-
-// document.addEventListener('touchstart', () => {
-//     bird.velocity = bird.lift;
-//     gameStart = true;
-// });
 
 document.addEventListener('pointerdown', (e) => {
-    bird.velocity = bird.lift;
-    gameStart = true;
+    // If click is anywhere inside the close button
+    if (e.target.closest('#close-btn')) {
+        return;
+    }
+
+    // Only allow clicks inside canvas
+    if (e.target.closest('#game-canvas')) {
+        bird.velocity = bird.lift;
+        gameStart = true;
+    }
 });
 
 function gameLoop() {
@@ -190,6 +199,4 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas(); 
 gameLoop();

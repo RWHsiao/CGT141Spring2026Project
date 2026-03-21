@@ -259,7 +259,7 @@ body {
 }
 
 .sort-option.selected, .sort-option.selected:hover {
-    background-color: rgb(198, 198, 198);
+    background-color: #c6c6c6;
 }
 
 .game-list {
@@ -306,15 +306,28 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100dvh;
+    overflow-y: auto;
     background: rgba(0,0,0,0.5);
     display: none;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     z-index: 9999;
+    padding: 1rem;
 }
 
 .modal-box {
+    margin: auto;
+    background: white;
+    width: 100%;
+    max-width: 500px;
+
+    max-height: calc(100dvh - 2rem); /* KEY */
+    overflow-y: auto;                /* KEY */
+
+    border-radius: 12px;
+    padding: 1rem;
+
     background: white;
     border-radius: 12px;
     padding: 20px;
@@ -322,6 +335,20 @@ body {
     max-width: 90%;
 
     position: relative;
+}
+
+.modal-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-box::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 20px;
+}
+
+.modal-box::-webkit-scrollbar-track {
+    border-radius: 20px;
+    margin: 30px 0;
 }
 
 .modal-box h3 {
@@ -434,8 +461,11 @@ body {
     @media (max-width: 1500px) {
         font-size: 60px;
     }
-    @media (max-width: 1000px) {
+    @media (max-width: 1200px) {
         font-size: 50px;
+    }
+    @media (max-width: 1000px) {
+        font-size: 40px;
     }
     @media (max-width: 800px) {
         font-size: 30px;
@@ -470,10 +500,11 @@ body {
 }
 
 #game-container {
+    position: relative;
     width: 80%;
     aspect-ratio: 16 / 9;
 
-    margin: 0 auto;
+    margin: 3vh auto;
 
     display: flex;
     justify-content: center;
@@ -488,6 +519,72 @@ body {
 
     display: block;
     background: #000;
+}
+
+#game-over-popup {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+#game-over-popup {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    color: black;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+#game-over {
+    margin: 0;
+}
+
+#final-score {
+    margin: 0;
+}
+
+#game-over-popup button {
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin: 0;
+    background-color: #007bff;
+    transition: transform 0.2s ease;
+}
+
+
+#popup-content {
+    background: white;
+    border-radius: 12px;
+    text-align: center;
+    align-items: center;
+}
+
+#restart-btn, #exit-btn {
+  cursor: pointer;
 }
 
 /* Account Settings Page styles */

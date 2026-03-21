@@ -175,15 +175,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div id="success-modal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 id="success-modal-title" class="modal-title">Title Text</h4>
-                    </div>
-                    <div id="success-modal-body" class="modal-body">
-                        <p>Body Text</p>
-                    </div>
-                    <div class="modal-footer">
-                        <a id="modal-btn" class="btn btn-success">Ok</a>
-                    </div>
+                        <div class="modal-header">
+                            <h4 id="success-modal-title" class="modal-title">Title Text</h4>
+                        </div>
+                        <div id="success-modal-body" class="modal-body">
+                            <p>Body Text</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="modal-btn" class="btn btn-success">Ok</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,32 +219,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Confirm Account Deletion</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Are you sure you want to delete your account? All scores for this account will be deleted. This cannot be undone.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="cancel-delete" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button id="confirm-delete" class="btn btn-danger">Delete</button>
-                    </div>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Confirm Account Deletion</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete your account? All scores for this account will be deleted. This cannot be undone.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="cancel-delete" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button id="confirm-delete" class="btn btn-danger">Delete</button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="delete-success-modal" class="modal fade" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
+            <div id="delete-success-modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
                     <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Account Deleted</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Your account has been deleted successfully.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="delete-success-button" class="btn btn-primary">Ok</button>
-                    </div>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Account Deleted</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Your account has been deleted successfully.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="delete-success-button" class="btn btn-primary">Ok</button>
+                        </div>
                     </div>
                 </div>
             </div>
