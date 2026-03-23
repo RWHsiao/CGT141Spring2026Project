@@ -1,9 +1,14 @@
 const gameContainer = document.getElementById('game-container');
 const gameCanvas = document.getElementById('game-canvas');
+const header = document.getElementById('play-header');
 function resizeCanvas() {
 
     const maxWidth = gameContainer.clientWidth;
-    const maxHeight = gameContainer.clientHeight;
+
+    const margin = parseFloat(window.getComputedStyle(container).marginTop);
+    const headerHeight = header.offsetHeight;
+    const maxHeight = window.innerHeight - headerHeight - 2 * margin;
+    console.log(maxHeight);
 
     const aspect = 16 / 9;
 
@@ -13,12 +18,14 @@ function resizeCanvas() {
     // If too tall, constrain by height instead
     if (height > maxHeight) {
         height = maxHeight;
-        width = height * aspect;
+        width = height * aspect; 
     }
 
     // Apply display size (CSS size)
     gameCanvas.style.width = width + "px";
     gameCanvas.style.height = height + "px";
+
+    gameContainer.style.height = height + "px";
 
     // Match internal resolution
     gameCanvas.width = width;

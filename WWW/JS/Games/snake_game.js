@@ -17,7 +17,7 @@ const relSquareSize = relBoardHeight / rows;
 const relFoodRadius = (relSquareSize * 0.9) / 2;
 const relSnakeWidth = (relSquareSize * 0.6);
 
-const moveFrames = 60;
+const moveFrames = 30;
 
 
 let gameStart = false;
@@ -38,9 +38,9 @@ let tail = {};
 
 function createGrid() {
     snake = [
-        { r: 8, c: 3, dirR: 0, dirC: 1 },
-        { r: 8, c: 2, dirR: 0, dirC: 1 },
-        { r: 8, c: 1, dirR: 0, dirC: 1 }
+        { r: (rows + 1) / 2, c: 3, dirR: 0, dirC: 1 },
+        { r: (rows + 1) / 2, c: 2, dirR: 0, dirC: 1 },
+        { r: (rows + 1) / 2, c: 1, dirR: 0, dirC: 1 }
     ];
     head = snake[0];
     tail = snake[2];
@@ -119,7 +119,7 @@ function update() {
         };
         if (newHead.r < 0 || newHead.r >= rows || newHead.c < 0 || newHead.c >= cols || grid[newHead.r][newHead.c] == OBSTACLE) {
             triggerGameOver();
-            return;
+            //return;
         }
         let ate = grid[newHead.r][newHead.c] == FOOD;
         if (ate) {

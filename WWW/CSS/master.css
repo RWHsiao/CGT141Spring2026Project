@@ -36,7 +36,6 @@ body {
 #navigation-container {
     margin: 0;
     width: 100%;
-    border: 2px solid green;
 }
 
 #user-container {
@@ -223,7 +222,6 @@ body {
     height: auto;
     align-items: center;
     justify-content: center;
-    border: 2px solid blue;
 }
 
 #games-content h1 {
@@ -236,6 +234,7 @@ body {
 
 #search-container {
     justify-content: center;
+    margin-top: 0px;
 }
 
 #search-header {

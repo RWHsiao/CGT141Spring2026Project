@@ -74,7 +74,7 @@ unset($settings['script']);
                 </div>
             </header>
 
-            <div id="game-container" style="border: 2px solid red;">
+            <div id="game-container">
                 <canvas id="game-canvas"></canvas>
                 <div id="game-over-popup" class="hidden">
                     <div id="popup-content">
