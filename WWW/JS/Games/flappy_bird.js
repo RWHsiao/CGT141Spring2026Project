@@ -16,11 +16,11 @@ const relBirdSize = 4;
 const relPipeWidth = 1.8 * relBirdSize;
 const relMaxPipeGap = maxGap * relBirdSize;
 const relMinPipeGap = 4 * relBirdSize;
-const relPipeMovement = 60 * speed;
-const pipeSpawnTime = 1.25 / speed;
+const relPipeMovement = 65 * speed;
+const pipeSpawnTime = 1.45 / speed;
 const relPipeVerticalMovement = 0.8;
 
-const relLift = 93;
+const relLift = 91;
 const relGravity = 325;
 
 let bird = {
@@ -46,7 +46,7 @@ function createPipe() {
     let top = Math.random() * (relHeight - gap);
 
     // make sure the diff isn't too much that it is impossible to make it
-    while (Math.abs(top - prevTop) > relHeight * 0.6 / Math.sqrt(speed)) {
+    while (Math.abs(top - prevTop) > relHeight * 0.55 / Math.sqrt(speed)) {
         top = Math.random() * (relHeight - gap);
     }  
 
