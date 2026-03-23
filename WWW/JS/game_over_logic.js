@@ -1,5 +1,6 @@
 restartBtn.addEventListener('click', () => {
     resetGame();
+    hideGameOver();
 });
 
 exitBtn.addEventListener('click', () => {
