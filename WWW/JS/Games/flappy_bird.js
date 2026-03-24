@@ -173,6 +173,7 @@ function resetGame() {
 
 
 document.addEventListener('keydown', (e) => {
+    if (pause || gameOver) return;
     if (e.code === "Space" || e.code === "ArrowUp") {
         e.preventDefault();
         bird.velocity = bird.lift;
@@ -182,16 +183,14 @@ document.addEventListener('keydown', (e) => {
 
 
 document.addEventListener('pointerdown', (e) => {
-    // If click is anywhere inside the close button
+    if (pause || gameOver) return;
     if (e.target.closest('#close-btn')) {
+        console.log("not jump");
         return;
     }
-
-    // Only allow clicks inside canvas
-    if (e.target.closest('#game-canvas')) {
-        bird.velocity = bird.lift;
-        gameStart = true;
-    }
+    console.log("jump");
+    bird.velocity = bird.lift;
+    gameStart = true;
 });
 
 function gameLoop(currTime) {

@@ -64,7 +64,7 @@ $games = [
             'script' => 'snake_game.js',
             'rows' => 25,
             'cols' => 29,
-            'foods' => 4,
+            'foods' => 8,
             'obstacles' => 0
         ],
         'Obstacles' => [
@@ -78,7 +78,7 @@ $games = [
             'script' => 'snake_game.js',
             'rows' => 25,
             'cols' => 29,
-            'foods' => 4,
+            'foods' => 8,
             'obstacles' => 25
         ]
     ]

@@ -17,13 +17,14 @@ const relSquareSize = relBoardHeight / rows;
 const relFoodRadius = (relSquareSize * 0.9) / 2;
 const relSnakeWidth = (relSquareSize * 0.6);
 
-const moveFrames = 30;
+const moveTime = 0.2;
 
 
 let gameStart = false;
 let gameOver = false;
 let pause = false;
-let frame = 0;
+let prevTime = 0;
+let moveTimer= 0;
 let score = 0;
 
 let grid = [];
@@ -98,12 +99,12 @@ function spawnFood() {
     grid[r][c] = FOOD;
 }
 
-function update() {
+function update(dt) {
     if (!gameStart || gameOver || pause) {
         return;
     }
-    frame++;
-    if (frame % moveFrames == 0) {
+    moveTimer += dt;
+    if (moveTimer >= moveTime) {
         if (inputQueue.length > 0) {
             const next = inputQueue.shift();
             if (!(head.dirR == -next.dirR && head.dirC == -next.dirC)) {
@@ -111,15 +112,18 @@ function update() {
                 head.dirC = next.dirC;
             }
         }
+        moveTimer = 0;
         let newHead = {
             r: head.r + head.dirR,
             c: head.c + head.dirC,
             dirR: head.dirR,
             dirC: head.dirC
         };
-        if (newHead.r < 0 || newHead.r >= rows || newHead.c < 0 || newHead.c >= cols || grid[newHead.r][newHead.c] == OBSTACLE) {
+        if (newHead.r < 0 || newHead.r >= rows || newHead.c < 0 || newHead.c >= cols || grid[newHead.r][newHead.c] == OBSTACLE ||
+            (grid[newHead.r][newHead.c] == SNAKE && (snake[snake.length - 1].r != newHead.r || snake[snake.length - 1].c != newHead.c))) {
             triggerGameOver();
-            //return;
+            moveTimer = moveTime * 0.8;
+            return;
         }
         let ate = grid[newHead.r][newHead.c] == FOOD;
         if (ate) {
@@ -157,6 +161,7 @@ function draw() {
     const squareSize = (relSquareSize / relHeight) * canvas.height;
     const vertOffset = (canvas.height - (squareSize * rows)) / 2;
     const horzOffset = (canvas.width - (squareSize * cols)) / 2;
+    const moveOffset = moveTimer / moveTime;
 
     let color = 0;
     for (let i = 0; i < rows; i++) {
@@ -182,11 +187,11 @@ function draw() {
 
     // Snake
     const snakeWidth = (relSnakeWidth / relHeight) * canvas.height;
-    for (let i = 0; i < snake.length; i++) {
+    for (let i = 1; i < snake.length - 1; i++) {
         ctx.fillStyle = 'blue';
         drawCircle(ctx, horzOffset + snake[i].c * squareSize + squareSize / 2,
             vertOffset + snake[i].r * squareSize + squareSize / 2, snakeWidth / 2, 'blue');
-        if (i > 0) {
+        if (i > 1) {
             if (snake[i].dirR == 1) {
                 ctx.fillRect(horzOffset + snake[i].c * squareSize + squareSize / 2 - (snakeWidth / 2),
                     vertOffset + snake[i].r * squareSize + squareSize / 2, snakeWidth, squareSize);
@@ -207,51 +212,102 @@ function draw() {
         }
     }
 
+    // Draw head
+    let headHorzMoveOffset = (moveOffset - 0.5) * snake[0].dirC * squareSize;
+    let headVertMoveOffset = (moveOffset - 0.5) * snake[0].dirR * squareSize;
+    drawCircle(ctx, horzOffset + snake[0].c * squareSize + squareSize / 2 + headHorzMoveOffset,
+        vertOffset + snake[0].r * squareSize + squareSize / 2 + headVertMoveOffset, snakeWidth / 2, 'blue');
+    if (moveTimer >= moveTime * 0.8) {
+        drawCircle(ctx, horzOffset + snake[0].c * squareSize + squareSize / 2,
+            vertOffset + snake[0].r * squareSize + squareSize / 2, snakeWidth / 2, 'blue');
+    }
+    
+    if (snake[1].dirR == 1) {
+        ctx.fillRect(horzOffset + snake[1].c * squareSize + squareSize / 2 - (snakeWidth / 2),
+            vertOffset + snake[1].r * squareSize + squareSize / 2, snakeWidth, squareSize + headVertMoveOffset);
+    }
+    else if (snake[1].dirR == -1) {
+        ctx.fillRect(horzOffset + snake[1].c * squareSize + squareSize / 2 - (snakeWidth / 2),
+            vertOffset + (snake[1].r - 1) * squareSize + squareSize / 2 + headVertMoveOffset, snakeWidth, squareSize - headVertMoveOffset);
+    }
+    else if (snake[1].dirC == 1) {
+        ctx.fillRect(horzOffset + snake[1].c * squareSize + squareSize / 2,
+            vertOffset + snake[1].r * squareSize + squareSize / 2 - (snakeWidth / 2), squareSize + headHorzMoveOffset, snakeWidth);
+    }
+    else {
+        ctx.fillRect(horzOffset + (snake[1].c - 1) * squareSize + squareSize / 2 + headHorzMoveOffset,
+            vertOffset + snake[1].r * squareSize + squareSize / 2 - (snakeWidth / 2), squareSize - headHorzMoveOffset, snakeWidth);
+    }
+
+    // Draw tail
+    let tail = snake[snake.length - 1];
+    let tailHorzMoveOffset = moveOffset * tail.dirC * squareSize;
+    let tailVertMoveOffset = moveOffset * tail.dirR * squareSize;
+    
+    drawCircle(ctx, horzOffset + tail.c * squareSize + squareSize / 2 + tailHorzMoveOffset,
+        vertOffset + tail.r * squareSize + squareSize / 2 + tailVertMoveOffset, snakeWidth / 2, 'blue');
+    if (tail.dirR == 1) {
+        ctx.fillRect(horzOffset + tail.c * squareSize + squareSize / 2 - (snakeWidth / 2),
+            vertOffset + tail.r * squareSize + squareSize / 2 + tailVertMoveOffset, snakeWidth, squareSize - tailVertMoveOffset);
+    }
+    else if (tail.dirR == -1) {
+        ctx.fillRect(horzOffset + tail.c * squareSize + squareSize / 2 - (snakeWidth / 2),
+            vertOffset + (tail.r - 1) * squareSize + squareSize / 2, snakeWidth, squareSize + tailVertMoveOffset);
+    }
+    else if (tail.dirC == 1) {
+        ctx.fillRect(horzOffset + tail.c * squareSize + squareSize / 2 + tailHorzMoveOffset,
+            vertOffset + tail.r * squareSize + squareSize / 2 - (snakeWidth / 2), squareSize - tailHorzMoveOffset, snakeWidth);
+    }
+    else {
+        ctx.fillRect(horzOffset + (tail.c - 1) * squareSize + squareSize / 2,
+            vertOffset + tail.r * squareSize + squareSize / 2 - (snakeWidth / 2), squareSize + tailHorzMoveOffset, snakeWidth);
+    }
+    
     // Draw eyes
     const eyeRadius = snakeWidth / 4;
     if (head.dirR == 1) {
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4, eyeRadius, 'white');
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4, eyeRadius, 'white');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + headVertMoveOffset, eyeRadius, 'white');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + headVertMoveOffset, eyeRadius, 'white');
 
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + eyeRadius / 4, eyeRadius * 0.75, 'black');
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + eyeRadius / 4, eyeRadius * 0.75, 'black');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + eyeRadius / 4 + headVertMoveOffset, eyeRadius * 0.75, 'black');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4  + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + eyeRadius / 4 + headVertMoveOffset, eyeRadius * 0.75, 'black');
     }
     else if (head.dirR == -1) {
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4, eyeRadius, 'white');
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4, eyeRadius, 'white');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 + headVertMoveOffset, eyeRadius, 'white');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 + headVertMoveOffset, eyeRadius, 'white');
         
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 - eyeRadius / 4, eyeRadius * 0.75, 'black');
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 - eyeRadius / 4, eyeRadius * 0.75, 'black');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 - eyeRadius / 4 + headVertMoveOffset, eyeRadius * 0.75, 'black');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 - eyeRadius / 4 + headVertMoveOffset, eyeRadius * 0.75, 'black');
     }
     else if (head.dirC == 1) {
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4, eyeRadius, 'white');
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4, eyeRadius, 'white');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 + headVertMoveOffset, eyeRadius, 'white');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + headVertMoveOffset, eyeRadius, 'white');
         
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4 + eyeRadius / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4, eyeRadius * 0.75, 'black');
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4 + eyeRadius / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4, eyeRadius * 0.75, 'black');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4 + eyeRadius / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 + headVertMoveOffset, eyeRadius * 0.75, 'black');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 - squareSize / 4 + eyeRadius / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + headVertMoveOffset, eyeRadius * 0.75, 'black');
     }
     else {
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4, eyeRadius, 'white');
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4, eyeRadius, 'white');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 + headVertMoveOffset, eyeRadius, 'white');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + headVertMoveOffset, eyeRadius, 'white');
         
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 - eyeRadius / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4, eyeRadius * 0.75, 'black');
-        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 - eyeRadius / 4,
-            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4, eyeRadius * 0.75, 'black');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 - eyeRadius / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 + squareSize / 4 + headVertMoveOffset, eyeRadius * 0.75, 'black');
+        drawCircle(ctx, horzOffset + head.c * squareSize + squareSize / 2 + squareSize / 4 - eyeRadius / 4 + headHorzMoveOffset,
+            vertOffset + head.r * squareSize + squareSize / 2 - squareSize / 4 + headVertMoveOffset, eyeRadius * 0.75, 'black');
     }
 
     // Score
@@ -273,8 +329,8 @@ function drawCircle(ctx, x, y, radius, color) {
     ctx.fill();
 }
 
-const inputQueue = [];
-const MAX_QUEUE = 5;
+let inputQueue = [];
+const MAX_QUEUE = 4;
 
 function enqueue(direction) {
     if (inputQueue.length >= MAX_QUEUE) return;
@@ -305,6 +361,75 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
+let touchStartX = 0;
+let touchStartY = 0;
+
+let touchEndX = 0;
+let touchEndY = 0;
+
+let isSwiping = false;
+
+const minSwipeDistance = 20;
+
+document.addEventListener("touchstart", (e) => {
+    if (pause || gameOver) return;
+    e.preventDefault();
+    const touch = e.changedTouches[0];
+    touchStartX = touch.clientX;
+    touchStartY = touch.clientY;
+    isSwiping = true;
+}, { passive: false });
+
+document.addEventListener("touchmove", (e) => {
+    if (pause || gameOver) return;
+    e.preventDefault();
+    if (!isSwiping) return;
+
+    const touch = e.changedTouches[0];
+    touchEndX = touch.clientX;
+    touchEndY = touch.clientY;
+
+    const dx = touchEndX - touchStartX;
+    const dy = touchEndY - touchStartY;
+
+    if (Math.abs(dx) < minSwipeDistance && Math.abs(dy) < minSwipeDistance) {
+        return;
+    }
+
+    handleSwipe(dx, dy);
+
+    isSwiping = false;
+
+}, { passive: false });
+
+document.addEventListener("touchend", () => {
+    if (pause || gameOver) return;
+    isSwiping = false;
+});
+
+function handleSwipe(dx, dy) {
+    if (pause || gameOver) return;
+    if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 0) {
+            enqueue({dirR: 0, dirC: 1});
+            gameStart = true;
+        }
+        else if (gameStart) {
+            enqueue({dirR: 0, dirC: -1});
+        }
+    }
+    else {
+        if (dy > 0) {
+            enqueue({dirR: 1, dirC: 0});
+            gameStart = true;
+        }
+        else {
+            enqueue({dirR: -1, dirC: 0});
+            gameStart = true;
+        }
+    }
+}
+
 function resetGame() {
     createGrid();
     if (numObstacles > 0) createObstacles();
@@ -313,11 +438,15 @@ function resetGame() {
     }
     gameStart = false;
     gameOver = false;
+    inputQueue = [];
 }
 
 
-function gameLoop() {
-    update();
+function gameLoop(currTime) {
+    const dt = (currTime - prevTime) / 1000;
+    prevTime = currTime;
+
+    update(dt);
     draw();
     requestAnimationFrame(gameLoop);
 }
