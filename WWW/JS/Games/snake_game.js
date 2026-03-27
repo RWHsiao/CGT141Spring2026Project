@@ -320,6 +320,12 @@ function draw() {
     ctx.textBaseline = "top";
 
     ctx.fillText("Score: " + score, horzScoreOffset, vertScoreOffset);
+
+    // Game Start
+    if (!gameStart) {
+        ctx.textAlign = "center";
+        ctx.fillText("Use the arrow keys or swipe to move", canvas.width / 2, canvas.height / 3);
+    }
 }
 
 function drawCircle(ctx, x, y, radius, color) {
