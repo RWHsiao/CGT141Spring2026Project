@@ -3,7 +3,7 @@ const canvas = document.getElementById('game-canvas');
 canvas.width = container.offsetWidth;
 canvas.height = container.offsetHeight;
 const ctx = canvas.getContext('2d');
-container.appendChild(canvas);
+//container.appendChild(canvas);
 
 const speed = GAME_SETTINGS.speed;
 const movingObstacles = GAME_SETTINGS.movingObstacles;
@@ -16,12 +16,12 @@ const relBirdSize = 4;
 const relPipeWidth = 1.8 * relBirdSize;
 const relMaxPipeGap = maxGap * relBirdSize;
 const relMinPipeGap = 4 * relBirdSize;
-const relPipeMovement = 0.8 * speed;
-const pipeSpawnFrames = 90 / speed;
-const relPipeVerticalMovement = 60;
+const relPipeMovement = 65 * speed;
+const pipeSpawnTime = 1.45 / speed;
+const relPipeVerticalMovement = 0.8;
 
-const relLift = 1.45;
-const relGravity = 0.08;
+const relLift = 91;
+const relGravity = 325;
 
 let bird = {
     x: relBirdX,
@@ -33,7 +33,8 @@ let bird = {
 };
 
 let pipes = [];
-let frame = 0;
+let prevTime = 0;
+let pipeTimer = 0;
 let score = 0;
 let gameStart = false;
 let gameOver = false;
@@ -45,7 +46,7 @@ function createPipe() {
     let top = Math.random() * (relHeight - gap);
 
     // make sure the diff isn't too much that it is impossible to make it
-    while (Math.abs(top - prevTop) > relHeight * 0.7 / Math.sqrt(speed)) {
+    while (Math.abs(top - prevTop) > relHeight * 0.55 / Math.sqrt(speed)) {
         top = Math.random() * (relHeight - gap);
     }  
 
@@ -72,15 +73,14 @@ function createPipe() {
     });
 }
 
-function update() {
+function update(dt) {
     if (!gameStart || gameOver || pause) {
         return;
     }
-    frame++;
 
     // Bird physics
-    bird.velocity += bird.gravity;
-    bird.y += bird.velocity;
+    bird.velocity += bird.gravity * dt;
+    bird.y += bird.velocity * dt;
 
     // Top boundary
     if (bird.y < 0) {
@@ -95,17 +95,20 @@ function update() {
     }
 
     // Create pipes
-    if (frame % pipeSpawnFrames === 0) {
+    pipeTimer += dt;
+    if (pipeTimer >= pipeSpawnTime) {
         createPipe();
+        pipeTimer = 0;
     }
 
     // Move pipes
     pipes.forEach(pipe => {
-        pipe.x -= relPipeMovement;
+        pipe.x -= relPipeMovement * dt;
         if (pipe.verticalMove != 0 && pipe.verticalMoveCount < relPipeVerticalMovement) {
-            pipe.top += pipe.verticalMove;
-            pipe.bottom += pipe.verticalMove;
-            pipe.verticalMoveCount++;
+            const moveAmount = pipe.verticalMove * dt;
+            pipe.top += moveAmount;
+            pipe.bottom += moveAmount;
+            pipe.verticalMoveCount += dt;
         }
         
     });
@@ -166,12 +169,11 @@ function resetGame() {
 
     gameStart = false;
     gameOver = false;
-
-    hideGameOver();
 }
 
 
 document.addEventListener('keydown', (e) => {
+    if (pause || gameOver) return;
     if (e.code === "Space" || e.code === "ArrowUp") {
         e.preventDefault();
         bird.velocity = bird.lift;
@@ -181,22 +183,23 @@ document.addEventListener('keydown', (e) => {
 
 
 document.addEventListener('pointerdown', (e) => {
-    // If click is anywhere inside the close button
+    if (pause || gameOver) return;
     if (e.target.closest('#close-btn')) {
+        console.log("not jump");
         return;
     }
-
-    // Only allow clicks inside canvas
-    if (e.target.closest('#game-canvas')) {
-        bird.velocity = bird.lift;
-        gameStart = true;
-    }
+    console.log("jump");
+    bird.velocity = bird.lift;
+    gameStart = true;
 });
 
-function gameLoop() {
-    update();
+function gameLoop(currTime) {
+    const dt = (currTime - prevTime) / 1000;
+    prevTime = currTime;
+
+    update(dt);
     draw();
     requestAnimationFrame(gameLoop);
 }
 
-gameLoop();
+requestAnimationFrame(gameLoop);

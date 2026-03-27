@@ -36,7 +36,6 @@ body {
 #navigation-container {
     margin: 0;
     width: 100%;
-    border: 2px solid green;
 }
 
 #user-container {
@@ -223,7 +222,6 @@ body {
     height: auto;
     align-items: center;
     justify-content: center;
-    border: 2px solid blue;
 }
 
 #games-content h1 {
@@ -236,6 +234,7 @@ body {
 
 #search-container {
     justify-content: center;
+    margin-top: 0px;
 }
 
 #search-header {
@@ -458,22 +457,27 @@ body {
 #play-header h1 {
     margin: 0;
     font-size: 75px;
+    max-width: 80vw;
     @media (max-width: 1500px) {
         font-size: 60px;
     }
     @media (max-width: 1200px) {
+        max-width: 70vw;
         font-size: 50px;
     }
     @media (max-width: 1000px) {
+        max-width: 70vw;
         font-size: 40px;
     }
     @media (max-width: 800px) {
-        font-size: 30px;
-    }
-    @media (max-width: 400px) {
+        max-width: 70vw;
         font-size: 20px;
     }
-    max-width: 50vw;
+    @media (max-width: 400px) {
+        max-width: 50vw;
+        font-size: 20px;
+    }
+    
     text-align: center;
     font-weight: bold;
     justify-self: center;

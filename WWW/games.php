@@ -21,7 +21,7 @@
                 <h1>
                     Games
                 </h1>
-                <div id="search-container" style="border: 2px solid red; margin-top: 0px;">
+                <div id="search-container">
                     <div id="search-header">
                         <input type="text" class="form-control" id="game-search" placeholder="Search games...">
  

@@ -55,21 +55,31 @@ $games = [
     'Snake Game' => [
         'Classic' => [
             'script' => 'snake_game.js',
-            'size' => 15,
-            'apples' => 1,
-            'obstacles' => false
+            'rows' => 15,
+            'cols' => 17,
+            'foods' => 1,
+            'obstacles' => 0
         ],
         'Extended' => [
             'script' => 'snake_game.js',
-            'size' => 25,
-            'apples' => 2,
-            'obstacles' => false
+            'rows' => 25,
+            'cols' => 29,
+            'foods' => 10,
+            'obstacles' => 0
         ],
-        'Hard' => [
+        'Obstacles' => [
             'script' => 'snake_game.js',
-            'size' => 15,
-            'apples' => 1,
-            'obstacles' => true
+            'rows' => 15,
+            'cols' => 17,
+            'foods' => 1,
+            'obstacles' => 15
+        ],
+        'Extended + Obstacles' => [
+            'script' => 'snake_game.js',
+            'rows' => 25,
+            'cols' => 29,
+            'foods' => 10,
+            'obstacles' => 40
         ]
     ]
 ];

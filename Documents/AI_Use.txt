@@ -1,0 +1,2 @@
+AI Use acknowledgement
+I used AI to help me set up the database and the linking to the database, as well as using it to help me debug.
