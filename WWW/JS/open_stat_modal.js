@@ -3,7 +3,6 @@ const listItems = document.querySelectorAll('.modal-item');
 const closeBtn = document.querySelector('.modal-close');
 
 function openModal(gameName, variant, userId) {
-    modal.classList.add('active');
     fetch(`get_stat_scores.php?game_name=${encodeURIComponent(gameName)}&variant=${encodeURIComponent(variant)}&user_id=${encodeURIComponent(userId)}`)
         .then(res => res.json())
         .then(data => {
@@ -24,6 +23,10 @@ function openModal(gameName, variant, userId) {
         });
     const name = document.getElementById('modal-game-name');
     name.textContent = gameName + " - " + variant;
+    setTimeout(function() {
+        modal.classList.add('active');
+    }, 100);
+    
 }
 
 function closeModal() {

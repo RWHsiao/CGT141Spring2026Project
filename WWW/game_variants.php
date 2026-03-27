@@ -31,23 +31,23 @@ $games = [
             'script' => 'pong.js',
             'ballSpeed' => 1,
             'enemySpeed' => 1,
-            'lives' => 3
+            'lives' => 5
         ],
         'Medium' => [
             'script' => 'pong.js',
-            'ballSpeed' => 2,
+            'ballSpeed' => 1.25,
             'enemySpeed' => 2,
-            'lives' => 3
+            'lives' => 5
         ],
         'Hard' => [
             'script' => 'pong.js',
-            'ballSpeed' => 3,
+            'ballSpeed' => 1.5,
             'enemySpeed' => 3,
-            'lives' => 3
+            'lives' => 5
         ],
         'Extreme' => [
             'script' => 'pong.js',
-            'ballSpeed' => 3,
+            'ballSpeed' => 1.5,
             'enemySpeed' => 3,
             'lives' => 1
         ]

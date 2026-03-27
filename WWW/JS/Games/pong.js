@@ -5,7 +5,8 @@ canvas.height = container.offsetHeight;
 const ctx = canvas.getContext('2d');
 container.appendChild(canvas);
 
-let lives = GAME_SETTINGS.lives;
+const maxLives = GAME_SETTINGS.lives;
+let lives = maxLives;
 const ballSpeed = GAME_SETTINGS.ballSpeed;
 const enemySpeed = GAME_SETTINGS.enemySpeed;
 
@@ -15,8 +16,10 @@ const relPaddleWidth = 3;
 const relPaddleOffset = 5;
 const relPaddleHeight = 14;
 const relBallRadius = 1.5;
-const relPlayerMove = 0.25;
-const relEnemyMove = 0.5 * enemySpeed;
+const relPlayerMove = 0.75;
+const relEnemyMove = 0.4 * enemySpeed;
+
+const collisionMultiplier = 1 + (ballSpeed / 10);
 
 let gameStart = false;
 let gameOver = false;
@@ -24,48 +27,54 @@ let pause = false;
 let prevTime = 0;
 let score = 0;
 
-let relBallVelocity = 0;
-let relBallMove = 0.2;
-let ballAngle = 0;
+let relBallMove = 0.5;
+let ballVelX = 0;
+let ballVelY = 0;
 
 let ballX = relWidth / 2;
 let ballY = relHeight / 2;
-let ballDir = 1;
 
 let playerX = relWidth - relPaddleOffset;
 let playerY = relHeight / 2 - (relPaddleHeight / 2);
-let playerYVel = 0;
+let upPressed = false;
+let downPressed = false;
 
 let enemyX = relPaddleOffset;
 let enemyY = relHeight / 2 - (relPaddleHeight / 2);
 
 function startRound() {
-    relBallVelocity = relBallMove * ballSpeed;
-    ballAngle = Math.random() * (Math.PI / 3) - (Math.PI / 6);
+    let relBallVelocity = relBallMove * ballSpeed;
+    let ballAngle = Math.random() * (Math.PI / 3) - (Math.PI / 6);
+    ballVelX = Math.cos(ballAngle) * relBallVelocity;
+    ballVelY = Math.sin(ballAngle) * relBallVelocity;
     ballX = relWidth / 2;
     ballY = relHeight / 2;
     playerY = relHeight / 2 - (relPaddleHeight / 2);
-    playerYVel = 0;
     enemyY = relHeight / 2 - (relPaddleHeight / 2);
+    startingNewRound = false;
 }
 
+let startingNewRound = false;
+
 function update(dt) {
-    if (!gameStart || gameOver || pause) {
+    if (!gameStart || gameOver || pause || startingNewRound) {
         return;
     }
-    // Move ball
 
-    ballX += relBallVelocity * Math.cos(ballAngle) * ballDir;
-    ballY += relBallVelocity * Math.sin(ballAngle);
-    console.log(ballAngle + " " + ballX + " " + ballY);
+    // Move ball
+    ballX += ballVelX;
+    ballY += ballVelY;
     if (ballY <= relBallRadius || ballY >= relHeight - relBallRadius) {
-        ballAngle = -ballAngle;
+        ballVelY *= -1;
         ballY = Math.max(relBallRadius, ballY);
         ballY = Math.min(relHeight - relBallRadius, ballY);
     }
     if (ballX <= -relBallRadius) {
         score++;
-        startRound();
+        startingNewRound = true;
+        setTimeout(function() {
+            startRound();
+        }, 1000);
     }
     else if (ballX >= relWidth + relBallRadius) {
         lives--;
@@ -73,22 +82,35 @@ function update(dt) {
             triggerGameOver();
             return;
         }
-        startRound();
+        startingNewRound = true;
+        setTimeout(function() {
+            startRound();
+        }, 1000);
     }
-    else if (ballDir == -1 && ballX >= relPaddleOffset &&
+    else if (ballVelX < 0 && ballX >= relPaddleOffset &&
              ballX <= relPaddleOffset + relPaddleWidth + relBallRadius) {
         if (ballY >= enemyY - relBallRadius && ballY <= enemyY + relPaddleHeight + relBallRadius) {
             ballX = relPaddleOffset + relPaddleWidth + relBallRadius;
-            ballDir = 1;
-            relBallVelocity *= 1.1;
+            let paddleCenter = enemyY + relPaddleHeight / 2;
+            let hitPos = (ballY - paddleCenter) / (relPaddleHeight / 2);
+
+            let speed = Math.sqrt(ballVelX * ballVelX + ballVelY * ballVelY) * collisionMultiplier;
+
+            ballVelX = speed * Math.cos(hitPos * Math.PI / 3);
+            ballVelY = speed * Math.sin(hitPos * Math.PI / 3);
         }
     }
-    else if (ballDir == 1 && ballX >= relWidth - relPaddleOffset - relPaddleWidth - relBallRadius &&
+    else if (ballVelX > 0 && ballX >= relWidth - relPaddleOffset - relPaddleWidth - relBallRadius &&
              ballX <= relWidth - relPaddleOffset) {
         if (ballY >= playerY - relBallRadius && ballY <= playerY + relPaddleHeight + relBallRadius) {
             ballX = relWidth - relPaddleOffset - relPaddleWidth - relBallRadius;
-            ballDir = -1;
-            relBallVelocity *= 1.1;
+
+            let paddleCenter = playerY + relPaddleHeight / 2;
+            let hitPos = (ballY - paddleCenter) / (relPaddleHeight / 2);
+            let speed = Math.sqrt(ballVelX * ballVelX + ballVelY * ballVelY) * collisionMultiplier;
+
+            ballVelX = -speed * Math.cos(hitPos * Math.PI / 3);
+            ballVelY = speed * Math.sin(hitPos * Math.PI / 3);
         }
     }
 
@@ -96,18 +118,34 @@ function update(dt) {
     let enemyCenter = enemyY + (relPaddleHeight / 2);
     if (Math.abs(ballY - enemyCenter) > relEnemyMove) {
         if (ballY < enemyCenter) {
-            enemyY -= relEnemyMove;
+            enemyY -= Math.min(relEnemyMove, Math.abs(ballY - enemyCenter) * 0.3);
             enemyY = Math.max(enemyY, 0);
         }
         else if (ballY > enemyCenter) {
-            enemyY += relEnemyMove;
+            enemyY += Math.min(relEnemyMove, Math.abs(ballY - enemyCenter) * 0.3);
             enemyY = Math.min(enemyY, relHeight - relPaddleHeight);
         }
     }
-    
 
     // Move player
-    playerY += playerYVel;
+    if (upPressed && !downPressed) {
+        playerY -= relPlayerMove
+    }
+    else if (downPressed && !upPressed) {
+        playerY += relPlayerMove;
+    }
+    else if (yTarget != -1) {
+        let playerCenter = playerY + relPaddleHeight / 2;
+        if (Math.abs(playerCenter - yTarget) < relPlayerMove) {
+            playerY = yTarget - relPaddleHeight / 2;
+        }
+        else if (playerCenter > yTarget) {
+            playerY -= relPlayerMove;
+        }
+        else {
+            playerY += relPlayerMove;
+        }
+    }
     playerY = Math.max(playerY, 0);
     playerY = Math.min(playerY, relHeight - relPaddleHeight);
 }
@@ -142,28 +180,67 @@ function draw() {
 document.addEventListener("keydown", (e) => {
     if (pause || gameOver) return;
     if (e.code === "Space" && !gameStart) {
-        console.log('start game');
         gameStart = true;
         startRound();
     }
     if (e.key === "ArrowUp" && gameStart) {
-        //playerY -= relPlayerMove;
-        //playerY = Math.max(playerY, 0);
-        playerYVel = -relPlayerMove;
+        upPressed = true;
     }
     if (e.key === "ArrowDown" && gameStart) {
-        //playerY += relPlayerMove;
-        //playerY = Math.min(playerY, relHeight - relPaddleHeight);
-        playerYVel = relPlayerMove;
+        downPressed = true;
     }
 });
 
+
+document.addEventListener('pointerdown', (e) => {
+    if (pause || gameOver) return;
+    if (e.target.closest('#close-btn')) {
+        return;
+    }
+    if (!gameStart) {
+        gameStart = true;
+        startRound();
+    }
+});
+
+let yTarget = -1;
+document.addEventListener('touchstart', (e) => {
+    if (pause || gameOver) return;
+    e.preventDefault();
+    const touch = e.changedTouches[0];
+    const rect = canvas.getBoundingClientRect();
+    yTarget = (touch.clientY - rect.top) * (relHeight / rect.height);
+}, { passive: false });
+document.addEventListener('touchmove', (e) => {
+    if (pause || gameOver) return;
+    e.preventDefault();
+    const touch = e.changedTouches[0];
+    const rect = canvas.getBoundingClientRect();
+    yTarget = (touch.clientY - rect.top) * (relHeight / rect.height);
+}, { passive: false });
+document.addEventListener("touchend", () => {
+    if (pause || gameOver) return;
+    yTarget = -1;
+});
+
+function resetGame() {
+    gameStart = false;
+    gameOver = false;
+    score = 0;
+    lives = maxLives;
+
+    ballX = relWidth / 2;
+    ballY = relHeight / 2;
+    playerY = relHeight / 2 - (relPaddleHeight / 2);
+    enemyY = relHeight / 2 - (relPaddleHeight / 2);
+}
+
 document.addEventListener("keyup", (e) => {
     if (e.key === "ArrowUp" && gameStart) {
-        playerYVel = 0;
+        upPressed = false;
     }
     if (e.key === "ArrowDown" && gameStart) {
-        playerYVel = 0;
+        downPressed = false;
     }
 });
 

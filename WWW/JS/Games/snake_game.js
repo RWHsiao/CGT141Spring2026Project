@@ -444,6 +444,7 @@ function resetGame() {
     }
     gameStart = false;
     gameOver = false;
+    score = 0;
     inputQueue = [];
 }
 
