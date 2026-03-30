@@ -185,7 +185,6 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('pointerdown', (e) => {
     if (pause || gameOver) return;
     if (e.target.closest('#close-btn')) {
-        console.log("not jump");
         return;
     }
     console.log("jump");

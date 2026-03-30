@@ -24,7 +24,7 @@ let gameStart = false;
 let gameOver = false;
 let pause = false;
 let prevTime = 0;
-let moveTimer= 0;
+let moveTimer = 0;
 let score = 0;
 
 let grid = [];
@@ -444,6 +444,7 @@ function resetGame() {
     }
     gameStart = false;
     gameOver = false;
+    score = 0;
     inputQueue = [];
 }
 

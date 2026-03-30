@@ -318,11 +318,8 @@ body {
 .modal-box {
     margin: auto;
     background: white;
-    width: 100%;
-    max-width: 500px;
-
-    max-height: calc(100dvh - 2rem); /* KEY */
-    overflow-y: auto;                /* KEY */
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
 
     border-radius: 12px;
     padding: 1rem;

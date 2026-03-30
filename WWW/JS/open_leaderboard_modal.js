@@ -3,7 +3,6 @@ const listItems = document.querySelectorAll('.modal-item');
 const closeBtn = document.querySelector('.modal-close');
 
 function openModal(gameName, variant) {
-    modal.classList.add('active');
     console.log(`get_leaderboard_scores.php?game_name=${encodeURIComponent(gameName)}&variant=${encodeURIComponent(variant)}`);
     fetch(`get_leaderboard_scores.php?game_name=${encodeURIComponent(gameName)}&variant=${encodeURIComponent(variant)}`)
         .then(res => res.json())
@@ -48,6 +47,9 @@ function openModal(gameName, variant) {
         });
     const name = document.getElementById('modal-game-name');
     name.textContent = gameName + " - " + variant;
+    setTimeout(function() {
+        modal.classList.add('active');
+    }, 100);
 }
 
 function closeModal() {
