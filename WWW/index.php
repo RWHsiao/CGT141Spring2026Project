@@ -20,35 +20,22 @@
             ?>
             <div id="content">
                 <div class="logo-container">
-                    <img src="Images/Logo.png" alt="Logo" id="content-logo"/>
+                    <img src="Images/Logo.jpg" alt="Logo" id="content-logo"/>
                 </div>
-                <p id="content-text" style="border: 1px solid green">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <br/>
+                <p id="content-text">
+                    This is a website for playing simple games 
+                    (<a href="https://en.wikipedia.org/wiki/Flappy_Bird">Flappy Bird</a>, 
+                    <a href="https://en.wikipedia.org/wiki/Snake_(video_game_genre)">Snake Game</a>, 
+                    and <a href="https://en.wikipedia.org/wiki/Pong">Pong</a>) and some custom variants.
                 </p>
-                <p style="font-size: 30px; border: 1px solid green">
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
-                    test asdfasdf asdf asdf
+                <p id="content-text">
+                    This website was created by Ryan as a project for CGT 141.
                 </p>
+                <br/>
+                <div id="press-start-container">
+                    <img src="Images/Press_Start.gif" alt="Press Start Gif" id="press-start-gif"/>
+                </div>
             </div>
 
         </div>

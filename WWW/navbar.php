@@ -33,7 +33,7 @@ if (isset($_SESSION['user_id'])) {
             </button>
 
             <a class="navbar-brand" href="index.php">
-                <img src="Images/Logo.png" alt="Logo" id="logo-img"/>
+                <img src="Images/Logo.jpg" alt="Logo" id="logo-img"/>
             </a>
 
         </div>
