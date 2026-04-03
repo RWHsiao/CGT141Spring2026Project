@@ -448,9 +448,12 @@ body {
 }
 
 #play-header #user-container {
-    margin: 0;
+    position: relative;
+    top: 10px;
+    left: 0px;
     justify-self: start;
     display: flex;
+    align-self: start;
     align-items: center;
 }
 
