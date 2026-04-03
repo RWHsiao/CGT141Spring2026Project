@@ -109,8 +109,8 @@ unset($settings['script']);
             const GAME_SETTINGS = <?php echo json_encode($settings); ?>;
         </script>
 
-        <script src="\WWW\JS\Games\<?php echo $script; ?>"></script>
-        <script src="/WWW/JS/play_manager.js"></script>
-        <script src="/WWW/JS/game_over_logic.js"></script>
+        <script src="\JS\Games\<?php echo $script; ?>"></script>
+        <script src="/JS/play_manager.js"></script>
+        <script src="/JS/game_over_logic.js"></script>
     </body>
 </html>

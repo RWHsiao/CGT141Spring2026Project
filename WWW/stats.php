@@ -139,7 +139,7 @@
             </div>
             
         </div>
-        <script src="/WWW/JS/search.js"></script>
-        <script src="/WWW/JS/open_stat_modal.js"></script>
+        <script src="/JS/search.js"></script>
+        <script src="/JS/open_stat_modal.js"></script>
     </body>
 </html>

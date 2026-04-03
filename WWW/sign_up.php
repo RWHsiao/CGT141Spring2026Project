@@ -117,6 +117,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php endif; ?>
         </div>
 
-        <script src="/WWW/JS/check_sign_up.js"></script>
+        <script src="/JS/check_sign_up.js"></script>
     </body>
 </html>

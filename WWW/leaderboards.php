@@ -203,7 +203,7 @@
             window.currentUsername = <?php echo json_encode($username); ?>;
         </script>
 
-        <script src="/WWW/JS/search.js"></script>
-        <script src="/WWW/JS/open_leaderboard_modal.js"></script>
+        <script src="/JS/search.js"></script>
+        <script src="/JS/open_leaderboard_modal.js"></script>
     </body>
 </html>

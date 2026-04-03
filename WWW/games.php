@@ -83,6 +83,6 @@
         
         </div>
 
-        <script src="/WWW/JS/search.js"></script>
+        <script src="/JS/search.js"></script>
     </body>
 </html>

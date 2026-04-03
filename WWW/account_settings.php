@@ -254,7 +254,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             window.currentUsername = <?php echo json_encode($username); ?>;
             window.currentPfpNum = <?php echo json_encode((int)$pfpNum); ?>;
         </script>
-        <script src="/WWW/JS/check_account_change.js"></script>
-        <script src="/WWW/JS/delete_account.js"></script>
+        <script src="/JS/check_account_change.js"></script>
+        <script src="/JS/delete_account.js"></script>
     </body>
 </html>

@@ -69,6 +69,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
         </div>
 
-        <script src="/WWW/JS/check_login.js"></script>
+        <script src="/JS/check_login.js"></script>
     </body>
 </html>
