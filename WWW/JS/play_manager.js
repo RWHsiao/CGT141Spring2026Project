@@ -69,7 +69,7 @@ $(document).ready(function() {
     $("#confirm-exit").click(function(e) {
         e.preventDefault();
         $("#exit-modal").modal('hide');
-        window.location.href = "games.php";
+        window.location.href = "/games.php";
     });
 
     $("#cancel-exit").click(function(e) {
@@ -79,6 +79,10 @@ $(document).ready(function() {
 
     $('#exit-modal').on('hidden.bs.modal', function () {
         resume();
+    });
+
+    $('#exit-modal').on('shown.bs.modal', function () {
+        $('#confirm-exit').trigger('focus');
     });
 });
 
@@ -95,7 +99,23 @@ document.getElementById('close-button').addEventListener('pointerdown', (e) => {
         $("#exit-modal").modal('show');
     }
     else {
-        window.location.href = "games.php";
+        window.location.href = "/games.php";
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") {
+        if (gameStart && !gameOver && !pause) {
+            e.stopPropagation();
+            e.preventDefault();
+            pause = true;
+            $("#exit-modal").modal('show');
+        }
+        else if (!pause) {
+            e.stopPropagation();
+            e.preventDefault();
+            window.location.href = "/games.php";
+        }
     }
 });
 

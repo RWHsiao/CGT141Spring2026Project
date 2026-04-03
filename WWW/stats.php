@@ -7,7 +7,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link href="/WWW/CSS/master.css" rel="stylesheet" type="text/css"/>
+        <link href="/CSS/master.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body>
@@ -20,7 +20,7 @@
                 <h1>
                     My Stats
                 </h1>
-                <div id="search-container" style="border: 2px solid red; margin-top: 0px;">
+                <div id="search-container">
                     <div id="search-header">
                         <input type="text" class="form-control" id="game-search" placeholder="Search games...">
  

@@ -17,7 +17,7 @@ $(document).ready(function() {
             return;
         }
 
-        $.get("/WWW/check_username.php", { username: username }, function(data) {
+        $.get("/check_username.php", { username: username }, function(data) {
             let result = JSON.parse(data);
             if (result.available) {
                 $("#username-status").text("Username available").css("color", "green");

@@ -109,8 +109,12 @@ unset($settings['script']);
             const GAME_SETTINGS = <?php echo json_encode($settings); ?>;
         </script>
 
-        <script src="\JS\Games\<?php echo $script; ?>"></script>
         <script src="/JS/play_manager.js"></script>
         <script src="/JS/game_over_logic.js"></script>
+        <script src="\JS\Games\<?php echo $script; ?>"></script>
+        <script>
+            resizeCanvas();
+            scalePopup();
+        </script>
     </body>
 </html>
