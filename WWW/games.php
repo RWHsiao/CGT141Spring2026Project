@@ -65,7 +65,7 @@
                                 echo "
                                 <button class='game-item btn'
                                         data-name='" . htmlspecialchars($gameName . ' - ' . $variant) . "'
-                                        data-plays='0'
+                                        data-plays='{$plays}'
                                         onclick=\"location.href='play.php?game=" . urlencode($gameName) . "&variant=" . urlencode($variant) . "'\">
                                     <span class='game-name'>{$gameName} - {$variant}</span>
                                     <span class='game-info'>

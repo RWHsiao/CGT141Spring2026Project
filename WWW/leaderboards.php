@@ -66,7 +66,7 @@
                                 echo "
                                 <button class='game-item btn'
                                         data-name='" . htmlspecialchars($gameName . ' - ' . $variant) . "'
-                                        data-plays='0'
+                                        data-plays='{$plays}'
                                         onclick='openModal(\"$gameName\", \"$variant\")'>
                                     <span class='game-name'>{$gameName} - {$variant}</span>
                                     <span class='game-info'>
