@@ -41,6 +41,9 @@ let gameOver = false;
 let pause = false;
 let prevTop = relHeight / 2;
 
+gameName = "Flappy Bird";
+gameControls = "Press space or up arrow or click to flap. Avoid the pipes and try to get the highest score!";
+
 function createPipe() {
     const gap = Math.random() * (relMaxPipeGap - relMinPipeGap) + relMinPipeGap;
     let top = Math.random() * (relHeight - gap);
@@ -184,7 +187,7 @@ document.addEventListener('keydown', (e) => {
 
 document.addEventListener('pointerdown', (e) => {
     if (pause || gameOver) return;
-    if (e.target.closest('#close-btn')) {
+    if (e.target.closest('#close-btn') || e.target.closest('#controls-btn')) {
         return;
     }
     console.log("jump");

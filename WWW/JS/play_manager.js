@@ -1,14 +1,15 @@
 const gameContainer = document.getElementById('game-container');
 const gameCanvas = document.getElementById('game-canvas');
 const header = document.getElementById('play-header');
+const controlsContainer = document.getElementById('controls-container');
 function resizeCanvas() {
 
     const maxWidth = gameContainer.clientWidth;
 
-    const margin = parseFloat(window.getComputedStyle(container).marginTop);
+    const margin = parseFloat(window.getComputedStyle(gameContainer).marginTop);
     const headerHeight = header.offsetHeight;
-    const maxHeight = window.innerHeight - headerHeight - 2 * margin;
-    console.log(maxHeight);
+    const controlsHeight = controlsContainer.offsetHeight;
+    const maxHeight = window.innerHeight - headerHeight - controlsHeight - 2 * margin;
 
     const aspect = 16 / 9;
 
@@ -65,6 +66,9 @@ function scalePopup() {
     });
 }
 
+let gameName = "[Game Name]";
+let gameControls = "[Game Controls]";
+
 $(document).ready(function() {
     $("#confirm-exit").click(function(e) {
         e.preventDefault();
@@ -84,6 +88,27 @@ $(document).ready(function() {
     $('#exit-modal').on('shown.bs.modal', function () {
         $('#confirm-exit').trigger('focus');
     });
+
+    $("#controls-modal-button").click(function(e) {
+        e.preventDefault();
+        $("#controls-modal").modal('hide');
+    });
+
+    $("#controls-modal").on('hidden.bs.modal', function () {
+        if (gameStart && !gameOver) {
+            resume();
+        }
+        else {
+            pause = false;
+        }
+    });
+
+    $('#controls-modal').on('shown.bs.modal', function () {
+        $('#controls-modal-button').trigger('focus');
+    });
+
+    $('#controls-modal-title').text(gameName + " Controls");
+    $('#controls-modal-body p').text(gameControls);
 });
 
 function resume() {
@@ -117,6 +142,12 @@ document.addEventListener('keydown', (e) => {
             window.location.href = "/games.php";
         }
     }
+});
+
+document.getElementById('controls-btn').addEventListener('pointerdown', (e) => {
+    e.stopPropagation();
+    pause = true;
+    $("#controls-modal").modal('show');
 });
 
 window.addEventListener('resize', () => {

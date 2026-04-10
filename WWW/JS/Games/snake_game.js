@@ -10,6 +10,9 @@ const cols = GAME_SETTINGS.cols;
 const foods = GAME_SETTINGS.foods;
 const numObstacles = GAME_SETTINGS.obstacles;
 
+gameName = "Snake Game";
+gameControls = "Use the arrow keys or swipe to control the snake. Eat the food to grow and earn points. Avoid the obstacles and don't hit the walls!";
+
 const relWidth = 160;
 const relHeight = 90;
 const relBoardHeight = 80;

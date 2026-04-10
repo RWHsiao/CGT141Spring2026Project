@@ -74,6 +74,11 @@ unset($settings['script']);
                     </a>
                 </div>
             </header>
+            
+            <div id="controls-container">
+                <button id="controls-btn" class="btn btn-info">Controls</button>
+            </div>
+            
 
             <div id="game-container">
                 <canvas id="game-canvas"></canvas>
@@ -100,6 +105,22 @@ unset($settings['script']);
                         <button id="cancel-exit" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                         <button id="confirm-exit" class="btn btn-danger">Exit</button>
                     </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="controls-modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="controls-modal-title">GamesControls</h4>
+                        </div>
+                        <div class="modal-body" id="controls-modal-body">
+                            <p>Text</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="controls-modal-button" class="btn btn-primary">Ok</button>
+                        </div>
                     </div>
                 </div>
             </div>
