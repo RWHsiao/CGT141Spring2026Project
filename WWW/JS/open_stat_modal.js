@@ -33,6 +33,12 @@ function closeModal() {
     modal.classList.remove('active');
 }
 
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
 closeBtn.addEventListener('click', closeModal);
 
 modal.addEventListener('click', (e) => {
