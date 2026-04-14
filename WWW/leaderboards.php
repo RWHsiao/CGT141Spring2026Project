@@ -1,13 +1,14 @@
-<!DOCTYPE XHTML PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <Title>Leaderboards</Title>
+        <title>Leaderboards</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link href="/WWW/CSS/master.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/master.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="/images/Logo.jpg" type="image/jpg">
     </head>
 
     <body>
@@ -20,7 +21,7 @@
                 <h1>
                     Leaderboards
                 </h1>
-                <div id="search-container" style="border: 2px solid red; margin-top: 0px;">
+                <div id="search-container">
                     <div id="search-header">
                         <input type="text" class="form-control" id="game-search" placeholder="Search games...">
  
@@ -65,7 +66,7 @@
                                 echo "
                                 <button class='game-item btn'
                                         data-name='" . htmlspecialchars($gameName . ' - ' . $variant) . "'
-                                        data-plays='0'
+                                        data-plays='{$plays}'
                                         onclick='openModal(\"$gameName\", \"$variant\")'>
                                     <span class='game-name'>{$gameName} - {$variant}</span>
                                     <span class='game-info'>
@@ -95,7 +96,7 @@
                                     <span class="leader-info">
                                         <span class="rank">1</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -105,7 +106,7 @@
                                     <span class="leader-info">
                                         <span class="rank">2</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -115,7 +116,7 @@
                                     <span class="leader-info">
                                         <span class="rank">3</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -125,7 +126,7 @@
                                     <span class="leader-info">
                                         <span class="rank">4</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -135,7 +136,7 @@
                                     <span class="leader-info">
                                         <span class="rank">5</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -145,7 +146,7 @@
                                     <span class="leader-info">
                                         <span class="rank">6</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -155,7 +156,7 @@
                                     <span class="leader-info">
                                         <span class="rank">7</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -165,7 +166,7 @@
                                     <span class="leader-info">
                                         <span class="rank">8</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -175,7 +176,7 @@
                                     <span class="leader-info">
                                         <span class="rank">9</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -185,7 +186,7 @@
                                     <span class="leader-info">
                                         <span class="rank">10</span>
                                         <span class="user-info">
-                                            <img class="leader-pfp" src="Images/PFP1.png" alt="PFP">
+                                            <img class="leader-pfp" src="/images/PFP1.png" alt="PFP">
                                             <span class="leader-username">Username</span>
                                         </span>
                                     </span>
@@ -203,7 +204,7 @@
             window.currentUsername = <?php echo json_encode($username); ?>;
         </script>
 
-        <script src="/WWW/JS/search.js"></script>
-        <script src="/WWW/JS/open_leaderboard_modal.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/open_leaderboard_modal.js"></script>
     </body>
 </html>

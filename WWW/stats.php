@@ -1,13 +1,14 @@
-<!DOCTYPE XHTML PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <Title>My Stats</Title>
+        <title>My Stats</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link href="/WWW/CSS/master.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/master.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="/images/Logo.jpg" type="image/jpg">
     </head>
 
     <body>
@@ -20,7 +21,7 @@
                 <h1>
                     My Stats
                 </h1>
-                <div id="search-container" style="border: 2px solid red; margin-top: 0px;">
+                <div id="search-container">
                     <div id="search-header">
                         <input type="text" class="form-control" id="game-search" placeholder="Search games...">
  
@@ -65,7 +66,7 @@
                                 echo "
                                 <button class='game-item btn'
                                         data-name='" . htmlspecialchars($gameName . ' - ' . $variant) . "'
-                                        data-plays='0'
+                                        data-plays='{$plays}'
                                         onclick='openModal(\"$gameName\", \"$variant\", $user_id)'>
                                     <span class='game-name'>{$gameName} - {$variant}</span>
                                     <span class='game-info'>
@@ -139,7 +140,7 @@
             </div>
             
         </div>
-        <script src="/WWW/JS/search.js"></script>
-        <script src="/WWW/JS/open_stat_modal.js"></script>
+        <script src="/js/search.js"></script>
+        <script src="/js/open_stat_modal.js"></script>
     </body>
 </html>

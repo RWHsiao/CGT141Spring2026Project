@@ -33,7 +33,7 @@ if (isset($_SESSION['user_id'])) {
             </button>
 
             <a class="navbar-brand" href="index.php">
-                <img src="Images/Logo.png" alt="Logo" id="logo-img"/>
+                <img src="/images/Logo.jpg" alt="Logo" id="logo-img"/>
             </a>
 
         </div>
@@ -55,7 +55,7 @@ if (isset($_SESSION['user_id'])) {
                         <a id="user-container" class="dropdown-toggle" data-toggle="dropdown" href="#">
                             <span class="navbar-text"><?php echo htmlspecialchars($username); ?></span>
                             <span class="navbar-btn">
-                                <img src="Images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img">
+                                <img src="/images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img">
                             </span>
                         </a>
                         <ul class="dropdown-menu">

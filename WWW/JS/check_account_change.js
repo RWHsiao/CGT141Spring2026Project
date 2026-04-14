@@ -29,7 +29,7 @@ $(document).ready(function() {
             return;
         }
 
-        $.get("/WWW/check_username.php", { username: newUsername }, function(data) {
+        $.get("/check_username.php", { username: newUsername }, function(data) {
             let result = JSON.parse(data);
             if (result.available) {
                 $("#username-status").text("Username available").css("color", "green");

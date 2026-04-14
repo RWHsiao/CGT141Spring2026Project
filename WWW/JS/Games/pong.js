@@ -21,6 +21,9 @@ const relEnemyMove = 0.4 * enemySpeed;
 
 const collisionMultiplier = 1 + (ballSpeed / 10);
 
+gameName = "Pong";
+gameControls = "Use the up and down arrow keys or touch to move your paddle. Try to get the highest score before you lose all your lives!";
+
 let gameStart = false;
 let gameOver = false;
 let pause = false;
@@ -194,7 +197,7 @@ document.addEventListener("keydown", (e) => {
 
 document.addEventListener('pointerdown', (e) => {
     if (pause || gameOver) return;
-    if (e.target.closest('#close-btn')) {
+    if (e.target.closest('#close-btn') || e.target.closest('#controls-btn')) {
         return;
     }
     if (!gameStart) {

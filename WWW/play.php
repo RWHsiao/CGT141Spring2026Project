@@ -37,16 +37,17 @@ $script = $settings['script'];
 unset($settings['script']);
 ?>
 
-<!DOCTYPE XHTML PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <Title>Play</Title>
+        <title>Play</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link href="/WWW/CSS/master.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/master.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="/images/Logo.jpg" type="image/jpg">
     </head>
 
     <body>
@@ -56,7 +57,7 @@ unset($settings['script']);
                     <div id="user-container">
                         <span class="navbar-text"><?php echo htmlspecialchars($username); ?></span>
                         <span class="navbar-btn">
-                            <img src="Images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img">
+                            <img src="/images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img">
                         </span>
                     </div>
                 <?php else: ?>
@@ -73,6 +74,11 @@ unset($settings['script']);
                     </a>
                 </div>
             </header>
+            
+            <div id="controls-container">
+                <button id="controls-btn" class="btn btn-info">Controls</button>
+            </div>
+            
 
             <div id="game-container">
                 <canvas id="game-canvas"></canvas>
@@ -103,14 +109,34 @@ unset($settings['script']);
                 </div>
             </div>
 
+            <div id="controls-modal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="controls-modal-title">GamesControls</h4>
+                        </div>
+                        <div class="modal-body" id="controls-modal-body">
+                            <p>Text</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="controls-modal-button" class="btn btn-primary">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <script>
             const GAME_SETTINGS = <?php echo json_encode($settings); ?>;
         </script>
 
-        <script src="\WWW\JS\Games\<?php echo $script; ?>"></script>
-        <script src="/WWW/JS/play_manager.js"></script>
-        <script src="/WWW/JS/game_over_logic.js"></script>
+        <script src="/js/play_manager.js"></script>
+        <script src="/js/game_over_logic.js"></script>
+        <script src="/js/Games/<?php echo $script; ?>"></script>
+        <script>
+            resizeCanvas();
+            scalePopup();
+        </script>
     </body>
 </html>

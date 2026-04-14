@@ -89,16 +89,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 ?>
 
-<!DOCTYPE XHTML PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 Strict//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <Title>Account Settings</Title>
+        <title>Account Settings</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link href="/WWW/CSS/master.css" rel="stylesheet" type="text/css"/>
+        <link href="/css/master.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="/images/Logo.jpg" type="image/jpg">
     </head>
 
     <body id="account-body">
@@ -109,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </a>
             </div>
             <div class="logo-container">
-                <img src="Images/Logo.png" alt="Logo" id="form-logo"/>
+                <img src="/images/Logo.jpg" alt="Logo" id="form-logo"/>
             </div>
             <h2>Account Settings</h2>
             <br/>
@@ -149,19 +150,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="pfp-selection">
                     <label class="pfp-label">
                         <input type="radio" name="pfp" value="pfp1" required>
-                        <img src="Images/PFP1.png" class="pfp-option">
+                        <img src="/images/PFP1.png" class="pfp-option">
                     </label>
                     <label class="pfp-label">
                         <input type="radio" name="pfp" value="pfp2">
-                        <img src="Images/PFP2.png" class="pfp-option">
+                        <img src="/images/PFP2.png" class="pfp-option">
                     </label>
                     <label class="pfp-label">
                         <input type="radio" name="pfp" value="pfp3">
-                        <img src="Images/PFP3.png" class="pfp-option">
+                        <img src="/images/PFP3.png" class="pfp-option">
                     </label>
                     <label class="pfp-label">
                         <input type="radio" name="pfp" value="pfp4">
-                        <img src="Images/PFP4.png" class="pfp-option">
+                        <img src="/images/PFP4.png" class="pfp-option">
                     </label>
                 </div>
                 <br/>
@@ -254,7 +255,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             window.currentUsername = <?php echo json_encode($username); ?>;
             window.currentPfpNum = <?php echo json_encode((int)$pfpNum); ?>;
         </script>
-        <script src="/WWW/JS/check_account_change.js"></script>
-        <script src="/WWW/JS/delete_account.js"></script>
+        <script src="/js/check_account_change.js"></script>
+        <script src="/js/delete_account.js"></script>
     </body>
 </html>
