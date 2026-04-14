@@ -111,9 +111,14 @@ $(document).ready(function() {
     $('#controls-modal-body p').text(gameControls);
 });
 
+let resuming = false;
 function resume() {
+    resuming = true;
     setTimeout(function() {
-        pause = false;
+        if (resuming) {
+            pause = false;
+        }
+        resuming = false;
     }, 1000);
 }
 
@@ -121,6 +126,7 @@ document.getElementById('close-button').addEventListener('pointerdown', (e) => {
     e.stopPropagation();
     if (gameStart && !gameOver) {
         pause = true;
+        resuming = false;
         $("#exit-modal").modal('show');
     }
     else {
@@ -130,10 +136,11 @@ document.getElementById('close-button').addEventListener('pointerdown', (e) => {
 
 document.addEventListener('keydown', (e) => {
     if (e.key === "Escape") {
-        if (gameStart && !gameOver && !pause) {
+        if (gameStart && !gameOver && (!pause || resuming)) {
             e.stopPropagation();
             e.preventDefault();
             pause = true;
+            resuming = false;
             $("#exit-modal").modal('show');
         }
         else if (!pause) {
@@ -147,6 +154,7 @@ document.addEventListener('keydown', (e) => {
 document.getElementById('controls-btn').addEventListener('pointerdown', (e) => {
     e.stopPropagation();
     pause = true;
+    resuming = false;
     $("#controls-modal").modal('show');
 });
 

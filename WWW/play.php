@@ -46,8 +46,8 @@ unset($settings['script']);
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <link href="/CSS/master.css" rel="stylesheet" type="text/css"/>
-        <link rel="icon" href="Images/Logo.jpg" type="image/jpg">
+        <link href="/css/master.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="/images/Logo.jpg" type="image/jpg">
     </head>
 
     <body>
@@ -57,7 +57,7 @@ unset($settings['script']);
                     <div id="user-container">
                         <span class="navbar-text"><?php echo htmlspecialchars($username); ?></span>
                         <span class="navbar-btn">
-                            <img src="Images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img">
+                            <img src="/images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img">
                         </span>
                     </div>
                 <?php else: ?>
@@ -131,9 +131,9 @@ unset($settings['script']);
             const GAME_SETTINGS = <?php echo json_encode($settings); ?>;
         </script>
 
-        <script src="/JS/play_manager.js"></script>
-        <script src="/JS/game_over_logic.js"></script>
-        <script src="\JS\Games\<?php echo $script; ?>"></script>
+        <script src="/js/play_manager.js"></script>
+        <script src="/js/game_over_logic.js"></script>
+        <script src="/js/Games/<?php echo $script; ?>"></script>
         <script>
             resizeCanvas();
             scalePopup();
