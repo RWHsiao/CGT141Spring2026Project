@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </a>
             </div>
             <div class="logo-container">
-                <img src="Images/Logo.jpg" alt="Logo" id="form-logo"/>
+                <img src="/images/Logo.jpg" alt="Logo" id="form-logo"/>
             </div>
             <h2>Login</h2>
             <a href="sign_up.php">Sign up instead</a>
