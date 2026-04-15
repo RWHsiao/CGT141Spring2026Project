@@ -34,7 +34,7 @@
                 </p>
                 <br/>
                 <div id="press-start-container">
-                    <img src="Images/Press_Start.gif" alt="Press Start Gif" id="press-start-gif"/>
+                    <img src="/images/Press_Start.gif" alt="Press Start Gif" id="press-start-gif"/>
                 </div>
             </div>
 

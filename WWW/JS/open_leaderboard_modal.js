@@ -14,7 +14,7 @@ function openModal(gameName, variant) {
                 const username = userInfo.querySelector('.leader-username');
 
                 if (data[index]) {
-                    pfp.src = `Images/PFP${data[index].pfp}.png`;
+                    pfp.src = `/images/PFP${data[index].pfp}.png`;
                     pfp.style.display = 'inline-block';
                     username.textContent = data[index].username;
                     li.children[1].textContent = data[index].score;
