@@ -18,5 +18,6 @@ header("Access-Control-Allow-Headers: Content-Type");
 session_start();
 session_unset();
 session_destroy();
-header("Location: index.php");
+
+echo json_encode(["success" => true]);
 exit;

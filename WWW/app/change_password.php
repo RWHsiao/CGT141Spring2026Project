@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "database.php";
+include __DIR__ . "/../database.php";
 
 $data = json_decode(file_get_contents("php://input"), true);
 
