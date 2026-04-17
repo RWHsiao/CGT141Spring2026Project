@@ -158,9 +158,14 @@ document.getElementById('controls-btn').addEventListener('pointerdown', (e) => {
     $("#controls-modal").modal('show');
 });
 
-window.addEventListener('resize', () => {
-    resizeCanvas();
-    scalePopup();
+let resizeTimeout;
+
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        resizeCanvas();
+        scalePopup();
+    }, 80);
 });
 
 resizeCanvas();

@@ -57,7 +57,7 @@ unset($settings['script']);
                     <div id="user-container">
                         <span class="navbar-text"><?php echo htmlspecialchars($username); ?></span>
                         <span class="navbar-btn">
-                            <img src="/images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img">
+                            <img src="/images/PFP<?php echo $pfpNum; ?>.png" alt="PFP" id="profile-img"/>
                         </span>
                     </div>
                 <?php else: ?>
