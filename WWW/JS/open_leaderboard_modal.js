@@ -48,6 +48,7 @@ function openModal(gameName, variant) {
     name.textContent = gameName + " - " + variant;
     setTimeout(function() {
         modal.classList.add('active');
+        modal.querySelector('.modal-box').scrollTop = 0;
     }, 100);
 }
 

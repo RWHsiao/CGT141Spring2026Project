@@ -1,26 +1,11 @@
 <?php
-header("Access-Control-Allow-Credentials: true");
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-
-$allowed = [
-    "http://localhost:8000",
-    "https://playvideogames.me"
-];
-
-if (in_array($origin, $allowed)) {
-    header("Access-Control-Allow-Origin: $origin");
-    header("Access-Control-Allow-Credentials: true");
-}
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
+include __DIR__ . "/../header.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
-
-header("Content-Type: application/json");
-session_start();
+require_once __DIR__ . "/../session.php";
 include __DIR__ . "/../database.php";
 
 if (!isset($_SESSION['user_id'])) {

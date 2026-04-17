@@ -1,21 +1,7 @@
 <?php
-header("Content-Type: application/json");
-header("Access-Control-Allow-Credentials: true");
-$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+include __DIR__ . "/../header.php";
 
-$allowed = [
-    "http://localhost:8000",
-    "https://playvideogames.me"
-];
-
-if (in_array($origin, $allowed)) {
-    header("Access-Control-Allow-Origin: $origin");
-    header("Access-Control-Allow-Credentials: true");
-}
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: Content-Type");
-
-session_start();
+require_once __DIR__ . "/../session.php";
 session_unset();
 session_destroy();
 

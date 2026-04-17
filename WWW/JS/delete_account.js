@@ -20,7 +20,7 @@ $(document).ready(function() {
 // Show modal after fetch
 function deleteAccount() {
     $("#delete-modal").modal("hide");
-    fetch("delete_account.php")
+    fetch("/delete_account.php")
         .then(response => response.json())
         .then(msg => {
             if (msg.success) {

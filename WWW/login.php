@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['password'])) {
             $message = "Login successful!";
             // Start session or redirect as needed
-            session_start();
+            require_once "session.php";
             $_SESSION['user_id'] = $user['id'];
             header("Location: index.php");
         } else {
