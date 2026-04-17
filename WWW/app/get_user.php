@@ -35,8 +35,11 @@ $stmt->bind_param("i", $id);
 $stmt->execute();
 $stmt->bind_result($username, $pfp);
 $stmt->fetch();
+$stmt->close();
+
 
 echo json_encode([
+    "id" => $id,
     "loggedIn" => true,
     "username" => $username,
     "pfp" => $pfp

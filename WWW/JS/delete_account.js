@@ -21,11 +21,14 @@ $(document).ready(function() {
 function deleteAccount() {
     $("#delete-modal").modal("hide");
     fetch("delete_account.php")
-        .then(response => response.text())
+        .then(response => response.json())
         .then(msg => {
-            setTimeout(function() {
-                $("#delete-success-modal").modal('show');
-            }, 500);
+            if (msg.success) {
+                setTimeout(function() {
+                    $("#delete-success-modal").modal('show');
+                }, 500);
+            }
+            
         })
         .catch(err => {
             console.error(err);

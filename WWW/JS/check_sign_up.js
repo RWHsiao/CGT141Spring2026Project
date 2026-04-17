@@ -17,17 +17,21 @@ $(document).ready(function() {
             return;
         }
 
-        $.get("/check_username.php", { username: username }, function(data) {
-            let result = JSON.parse(data);
-            if (result.available) {
-                $("#username-status").text("Username available").css("color", "green");
-                validUsername = true;
-            } else {
-                $("#username-status").text("Username already taken").css("color", "red");
-                validUsername = false;
-            }
-            updateSubmitButton();
-        });
+        $.get(
+            "/check_username.php",
+            { username: username },
+            function(result) {
+                if (result.available) {
+                    $("#username-status").text("Username available").css("color", "green");
+                    validUsername = true;
+                } else {
+                    $("#username-status").text("Username already taken").css("color", "red");
+                    validUsername = false;
+                }
+                updateSubmitButton();
+            },
+            "json"
+        );
         
     }
 

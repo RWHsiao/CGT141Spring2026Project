@@ -43,6 +43,7 @@ $stmt->bind_param("s", $username);
 $stmt->execute();
 
 $result = $stmt->get_result();
+$stmt->close(); 
 
 if ($result->num_rows !== 1) {
     echo json_encode(["success" => false, "message" => "User not found"]);
@@ -56,7 +57,6 @@ if (!password_verify($password, $user['password'])) {
     exit;
 }
 
-// success
 $_SESSION['user_id'] = $user['id'];
 
 echo json_encode([

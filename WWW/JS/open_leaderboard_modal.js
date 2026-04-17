@@ -3,7 +3,6 @@ const listItems = document.querySelectorAll('.modal-item');
 const closeBtn = document.querySelector('.modal-close');
 
 function openModal(gameName, variant) {
-    console.log(`get_leaderboard_scores.php?game_name=${encodeURIComponent(gameName)}&variant=${encodeURIComponent(variant)}`);
     fetch(`get_leaderboard_scores.php?game_name=${encodeURIComponent(gameName)}&variant=${encodeURIComponent(variant)}`)
         .then(res => res.json())
         .then(data => {
