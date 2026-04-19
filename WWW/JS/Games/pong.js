@@ -18,6 +18,7 @@ const relPaddleHeight = 14;
 const relBallRadius = 1.5;
 const relPlayerMove = 0.75;
 const relEnemyMove = 0.4 * enemySpeed;
+const timeMultiplier = 160;
 
 const collisionMultiplier = 1 + (ballSpeed / 10);
 
@@ -65,8 +66,8 @@ function update(dt) {
     }
 
     // Move ball
-    ballX += ballVelX;
-    ballY += ballVelY;
+    ballX += ballVelX * dt * timeMultiplier;
+    ballY += ballVelY * dt * timeMultiplier;
     if (ballY <= relBallRadius || ballY >= relHeight - relBallRadius) {
         ballVelY *= -1;
         ballY = Math.max(relBallRadius, ballY);
@@ -121,21 +122,21 @@ function update(dt) {
     let enemyCenter = enemyY + (relPaddleHeight / 2);
     if (Math.abs(ballY - enemyCenter) > relEnemyMove) {
         if (ballY < enemyCenter) {
-            enemyY -= Math.min(relEnemyMove, Math.abs(ballY - enemyCenter) * 0.3);
+            enemyY -= Math.min(relEnemyMove, Math.abs(ballY - enemyCenter) * 0.3) * dt * timeMultiplier;
             enemyY = Math.max(enemyY, 0);
         }
         else if (ballY > enemyCenter) {
-            enemyY += Math.min(relEnemyMove, Math.abs(ballY - enemyCenter) * 0.3);
+            enemyY += Math.min(relEnemyMove, Math.abs(ballY - enemyCenter) * 0.3) * dt * timeMultiplier;
             enemyY = Math.min(enemyY, relHeight - relPaddleHeight);
         }
     }
 
     // Move player
     if (upPressed && !downPressed) {
-        playerY -= relPlayerMove
+        playerY -= relPlayerMove * dt * timeMultiplier;
     }
     else if (downPressed && !upPressed) {
-        playerY += relPlayerMove;
+        playerY += relPlayerMove * dt * timeMultiplier;
     }
     else if (yTarget != -1) {
         let playerCenter = playerY + relPaddleHeight / 2;
@@ -143,10 +144,10 @@ function update(dt) {
             playerY = yTarget - relPaddleHeight / 2;
         }
         else if (playerCenter > yTarget) {
-            playerY -= relPlayerMove;
+            playerY -= relPlayerMove * dt * timeMultiplier;
         }
         else {
-            playerY += relPlayerMove;
+            playerY += relPlayerMove * dt * timeMultiplier;
         }
     }
     playerY = Math.max(playerY, 0);
