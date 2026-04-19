@@ -231,6 +231,8 @@ function resetGame() {
     gameOver = false;
     score = 0;
     lives = maxLives;
+    upPressed = false;
+    downPressed = false;
 
     ballX = relWidth / 2;
     ballY = relHeight / 2;
@@ -239,10 +241,10 @@ function resetGame() {
 }
 
 document.addEventListener("keyup", (e) => {
-    if (e.key === "ArrowUp" && gameStart) {
+    if (e.key === "ArrowUp") {
         upPressed = false;
     }
-    if (e.key === "ArrowDown" && gameStart) {
+    if (e.key === "ArrowDown") {
         downPressed = false;
     }
 });
@@ -256,4 +258,5 @@ function gameLoop(currTime) {
     requestAnimationFrame(gameLoop);
 }
 
+resetGame();
 requestAnimationFrame(gameLoop);
