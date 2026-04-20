@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 
     const pfpInputs = document.querySelectorAll('input[name="pfp"]');
@@ -11,8 +10,6 @@ $(document).ready(function() {
 
     function checkUsername() {
         let newUsername = $("#username").val().trim();
-
-        console.log(window.currentUsername);
         if (newUsername === window.currentUsername) {
             $("#username-status").text("");
             $("#username-submit-button").prop("disabled", true);
@@ -29,16 +26,20 @@ $(document).ready(function() {
             return;
         }
 
-        $.get("/check_username.php", { username: newUsername }, function(data) {
-            let result = JSON.parse(data);
-            if (result.available) {
-                $("#username-status").text("Username available").css("color", "green");
-                $("#username-submit-button").prop("disabled", false);
-            } else {
-                $("#username-status").text("Username already taken").css("color", "red");
-                $("#username-submit-button").prop("disabled", true);
-            }
-        });
+        $.get(
+            "/check_username.php",
+            { username: newUsername },
+            function(result) {
+                if (result.available) {
+                    $("#username-status").text("Username available").css("color", "green");
+                    $("#username-submit-button").prop("disabled", false);
+                } else {
+                    $("#username-status").text("Username already taken").css("color", "red");
+                    $("#username-submit-button").prop("disabled", true);
+                }
+            },
+            "json"
+        );
         
     }
 
@@ -83,5 +84,30 @@ $(document).ready(function() {
     $("#new-password, #new-password2").on("input", checkPasswords);
     pfpInputs.forEach(input => {
         input.addEventListener('change', updatePfp);
+    });
+
+    fetch("https://playvideogames.me/app/get_user.php", {
+        credentials: "include"
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        window.currentUsername = data.username;
+        window.currentPfpNum = Number(data.pfp);
+
+        // username init
+        $("#username").val(window.currentUsername);
+
+        // pfp init
+        pfpInputs.forEach(input => {
+            const num = parseInt(input.value.substring(3), 10);
+            if (num === window.currentPfpNum) {
+                input.checked = true;
+            }
+        });
+
+        // run initial state checks
+        checkUsername();
+        updatePfp();
     });
 });

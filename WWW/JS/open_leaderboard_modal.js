@@ -3,7 +3,6 @@ const listItems = document.querySelectorAll('.modal-item');
 const closeBtn = document.querySelector('.modal-close');
 
 function openModal(gameName, variant) {
-    console.log(`get_leaderboard_scores.php?game_name=${encodeURIComponent(gameName)}&variant=${encodeURIComponent(variant)}`);
     fetch(`get_leaderboard_scores.php?game_name=${encodeURIComponent(gameName)}&variant=${encodeURIComponent(variant)}`)
         .then(res => res.json())
         .then(data => {
@@ -14,7 +13,7 @@ function openModal(gameName, variant) {
                 const username = userInfo.querySelector('.leader-username');
 
                 if (data[index]) {
-                    pfp.src = `Images/PFP${data[index].pfp}.png`;
+                    pfp.src = `/images/PFP${data[index].pfp}.png`;
                     pfp.style.display = 'inline-block';
                     username.textContent = data[index].username;
                     li.children[1].textContent = data[index].score;
@@ -49,6 +48,7 @@ function openModal(gameName, variant) {
     name.textContent = gameName + " - " + variant;
     setTimeout(function() {
         modal.classList.add('active');
+        modal.querySelector('.modal-box').scrollTop = 0;
     }, 100);
 }
 

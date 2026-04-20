@@ -1,4 +1,5 @@
 <?php
+include "header.php";
 include "database.php";
 
 $game_name = $_GET['game_name'];
@@ -29,4 +30,3 @@ while ($row = $result->fetch_assoc()) {
 }
 
 echo json_encode($scores);
-?>

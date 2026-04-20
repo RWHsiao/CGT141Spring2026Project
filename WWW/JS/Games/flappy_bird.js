@@ -3,7 +3,6 @@ const canvas = document.getElementById('game-canvas');
 canvas.width = container.offsetWidth;
 canvas.height = container.offsetHeight;
 const ctx = canvas.getContext('2d');
-//container.appendChild(canvas);
 
 const speed = GAME_SETTINGS.speed;
 const movingObstacles = GAME_SETTINGS.movingObstacles;
@@ -190,7 +189,6 @@ document.addEventListener('pointerdown', (e) => {
     if (e.target.closest('#close-btn') || e.target.closest('#controls-btn')) {
         return;
     }
-    console.log("jump");
     bird.velocity = bird.lift;
     gameStart = true;
 });

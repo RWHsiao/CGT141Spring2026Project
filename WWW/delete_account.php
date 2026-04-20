@@ -1,5 +1,6 @@
 <?php
-session_start();
+include "header.php";
+require_once "session.php";
 include "database.php";
 
 
@@ -13,4 +14,8 @@ $stmt->close();
 
 session_unset();
 session_destroy();
-?>
+
+echo json_encode([
+    "success" => true
+]);
+exit;

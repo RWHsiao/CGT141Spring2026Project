@@ -1,6 +1,6 @@
 <?php
 include "database.php";
-session_start();
+require_once "session.php";
 
 $message = "";
 

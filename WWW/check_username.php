@@ -1,4 +1,10 @@
 <?php
+include "header.php";
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
 include "database.php";
 
 if (isset($_GET['username'])) {
@@ -17,4 +23,3 @@ if (isset($_GET['username'])) {
 
     $stmt->close();
 }
-?>

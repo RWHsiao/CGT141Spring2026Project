@@ -458,7 +458,7 @@ body {
 }
 
 #play-header #user-container .navbar-text {
-    max-width: 6vw;
+    max-width: 8vw;
     max-height: 20vw;
     white-space: normal;      
     word-wrap: break-word;   

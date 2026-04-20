@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($password, $user['password'])) {
             $message = "Login successful!";
             // Start session or redirect as needed
-            session_start();
+            require_once "session.php";
             $_SESSION['user_id'] = $user['id'];
             header("Location: index.php");
         } else {
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </a>
             </div>
             <div class="logo-container">
-                <img src="Images/Logo.jpg" alt="Logo" id="form-logo"/>
+                <img src="/images/Logo.jpg" alt="Logo" id="form-logo"/>
             </div>
             <h2>Login</h2>
             <a href="sign_up.php">Sign up instead</a>

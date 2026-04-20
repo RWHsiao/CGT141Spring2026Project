@@ -1,2 +1,0 @@
-17.	Must have at least 1 DIV that has been floated
-18.	Must use the clear property at least 1 time

@@ -1,6 +1,6 @@
 <?php
-session_start();
-header('Content-Type: application/json');
+include "header.php";
+require_once "session.php";
 include "database.php";
 
 if (!isset($_SESSION['user_id'])) {
@@ -29,4 +29,3 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
-?>

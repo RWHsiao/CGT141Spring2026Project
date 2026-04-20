@@ -1,2 +1,2 @@
 AI Use acknowledgement
-I used AI to help me set up the database and the linking to the database, as well as using it to help me debug.
+I used AI to help me set up the mysql database and the php linking to the database, help me debug my bootstrap and css, and help me set up the cordova app.
